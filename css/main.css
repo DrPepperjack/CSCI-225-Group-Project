@@ -189,6 +189,11 @@ main {
     background-color: #fff;
 }
 
+.about img{
+    height: 75%;
+    width: 75%;
+}
+
 .about-content {
     max-width: 600px;
     margin: 0 auto;

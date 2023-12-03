@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banksia Pages</title>
+</head>
+
+<body>
+    <!-- Add Firebase SDK for Banksia Pages Database -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js"></script>
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyD6KA0ECIAB3scXNUu7mxgjmbmnhjOSEVc",
+        authDomain: "banksia-pages-database.firebaseapp.com",
+        projectId: "banksia-pages-database",
+        storageBucket: "banksia-pages-database.appspot.com",
+        messagingSenderId: "239610874789",
+        appId: "1:239610874789:web:80bcede53d7ef4ba26764c",
+        measurementId: "G-JV3QXR7P2H"
+    };
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+</script>
+
+
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <a class="nav-title" href="#">Banksia<b>Pages</b></a>
+        <div class="header-buttons">
+            <a href="#">sign in</a>
+            <!--<a href="#">Sign Up</a> commented out so we could have one button for signing in or signing up.
+            can add back if necessary-->
+        </div>
+        <div class="header-links">
+            <ul>
+                <li><a href="BanksiaPages.html">Home</a></li>
+                <li><a href="blogslist.html">Blogs</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+<!-- Header with buttons -->
+<header class="header first-section">
+    <main>
+        <header class="blog_header">
+            <!-- Blog header content -->
+        </header>
+        <article class="blog_page">
+            <!-- Blog post content -->
+        </article>
+        <!-- Add more articles for other blog posts -->
+
+        <aside class="sidebar">
+            <!-- Sidebar content -->
+        </aside>
+    </main>
+</header>
+
+<!-- Blog Post Template -->
+<article class="blog-post px-3 py-5 p-md-5">
+    <div class="container">
+        <header class="blog-post-header">
+            <!-- Blog post header content -->
+        </header>
+
+        <div class="blog-post-body">
+            <!-- Blog post body content -->
+        </div>
+
+        <nav class="blog-nav nav nav-justified my-5">
+            <!-- Navigation within the blog -->
+        </nav>
+
+        <div class="blog-comments-section">
+            <!--Blog comments section -->
+        </div>
+    </div><!--//container-->
+</article>
+</body>
+
+</html>
