@@ -10,24 +10,23 @@
 
 <body>
     <!-- Add Firebase SDK for Banksia Pages Database -->
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js"></script>
-<script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyD6KA0ECIAB3scXNUu7mxgjmbmnhjOSEVc",
-        authDomain: "banksia-pages-database.firebaseapp.com",
-        projectId: "banksia-pages-database",
-        storageBucket: "banksia-pages-database.appspot.com",
-        messagingSenderId: "239610874789",
-        appId: "1:239610874789:web:80bcede53d7ef4ba26764c",
-        measurementId: "G-JV3QXR7P2H"
-    };
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID",
+            measurementId: "YOUR_MEASUREMENT_ID"
+        };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-</script>
-
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
 
     <!-- Top Navigation Bar -->
     <nav class="top-nav">
@@ -46,42 +45,69 @@ const db = firebase.firestore();
         </div>
     </nav>
 
-<!-- Header with buttons -->
+<!-- Header with buttons section for user profile information and bio, commented out until I set up a test profile to see how it looks
 <header class="header first-section">
     <main>
-        <header class="blog_header">
-            <!-- Blog header content -->
+        <header class="blog_username">
+            Blog header content
         </header>
-        <article class="blog_page">
-            <!-- Blog post content -->
+        <article class="blog_bio">
+            Blog post content
         </article>
-        <!-- Add more articles for other blog posts -->
+        Add more articles for other blog posts
 
         <aside class="sidebar">
-            <!-- Sidebar content -->
+            Sidebar content
         </aside>
     </main>
 </header>
+-->
 
 <!-- Blog Post Template -->
 <article class="blog-post px-3 py-5 p-md-5">
     <div class="container">
-        <header class="blog-post-header">
-            <!-- Blog post header content -->
-        </header>
+        <div class="blog-post-header">
+            <h1>Title of the Blog Post</h1>
+            <p>Author: John Doe</p>
+            <p>Date: January 1, 2023</p>
 
         <div class="blog-post-body">
             <!-- Blog post body content -->
         </div>
+<!-- Commented out nav class for now. Can add back if necessary
 
         <nav class="blog-nav nav nav-justified my-5">
-            <!-- Navigation within the blog -->
+            <a class="nav-link-prev nav-item nav-link d-none rounded-left" href="#">Previous<i
+                    class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+            <a class="nav-link-next nav-item nav-link rounded" href="#">Next<i
+                    class="arrow-next fas fa-long-arrow-alt-right"></i></a>
         </nav>
-
+    -->
         <div class="blog-comments-section">
-            <!--Blog comments section -->
+            <h2>Comments</h2>
+            <!-- Display existing comments -->
+            <div class="existing-comments">
+                <!-- Each comment could be structured within its own div -->
+                <div class="comment">
+                    <p>User A: This is a great post!</p>
+                </div>
+                <div class="comment">
+                    <p>User B: I found this very helpful. Thanks!</p>
+                </div>
+                <!-- Add more existing comments dynamically here -->
+            </div>
+        
+            <!-- Form for users to submit new comments -->
+            <form id="comment-form">
+                <label for="user-name">Name:</label>
+                <input type="text" id="user-name" name="user-name" required><br><br>
+                <label for="user-comment">Comment:</label><br>
+                <textarea id="user-comment" name="user-comment" rows="4" cols="50" required></textarea><br><br>
+                <button type="submit">Submit</button>
+            </form>
         </div>
-    </div><!--//container-->
+        
+    </div>
 </article>
 </body>
 

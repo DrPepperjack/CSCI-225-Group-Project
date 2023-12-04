@@ -199,6 +199,14 @@ main {
     margin: 0 auto;
 }
 
+.about-content img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    height: 300px;
+    width: 300px;
+}
 /* Top Navigation Bar styles */
 .top-nav {
     background-color: #fff;
