@@ -189,10 +189,6 @@ main {
     background-color: #fff;
 }
 
-.about img{
-    height: 75%;
-    width: 75%;
-}
 
 .about-content {
     max-width: 600px;
@@ -204,9 +200,11 @@ main {
     justify-content: center;
     align-items: center;
     border-radius: 8px;
-    height: 300px;
+    height: 400px;
     width: 300px;
 }
+/*Create account page style*/
+
 /* Top Navigation Bar styles */
 .top-nav {
     background-color: #fff;
