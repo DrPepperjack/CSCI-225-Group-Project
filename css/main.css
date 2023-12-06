@@ -189,11 +189,24 @@ main {
     background-color: #fff;
 }
 
+.about img{
+    height: 75%;
+    width: 75%;
+}
+
 .about-content {
     max-width: 600px;
     margin: 0 auto;
 }
 
+.about-content img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    height: 300px;
+    width: 300px;
+}
 /* Top Navigation Bar styles */
 .top-nav {
     background-color: #fff;
