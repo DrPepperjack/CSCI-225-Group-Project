@@ -5,7 +5,6 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../css/main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="signin.js"></script>
     <title>Banksia Pages</title>
 </head>
 
@@ -29,16 +28,14 @@
         <div class="google-signin-box">
         <div class="google-signin-button">
             <!-- If user selects sign in it will call Signin.js -->
-            <img src="../img/google-logo.png" alt="" id="google-logo">log in or sign up
-            <script>
-                function onSignIn(googleUser) {
-                    var profile = googleUser.getBasicProfile();
-                    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-                    console.log('Name: ' + profile.getName());
-                    console.log('Image URL: ' + profile.getImageUrl());
-                    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-                }
-            </script>
+            <input type="button" value="Sign In with Google" id="google-login-button">
         </div>
     </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
+
+    <script src="../js/SignIn.js"></script>
 </body>

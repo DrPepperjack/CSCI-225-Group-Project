@@ -15,7 +15,7 @@ const firebaseConfig = {
   const analytics = getAnalytics(app);
 
   //Google login
-  $('#google-logo').click(function () {
+  $('#google-login-button').click(function () {
     var provider = new firebase.auth.GoogleAuthProvider();
   
     firebase.auth()
