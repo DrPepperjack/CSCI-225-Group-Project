@@ -31,15 +31,6 @@ const firebaseConfig = {
       
       // User is signed in.
       console.log("Sign in through Google username: " + user.email);
-      firebase.firestore().collection("blogdata").doc(user.email).set({
-        username: user.displayName,
-        email: user.email,
-        blog: ["test blog"]
-      }).then(() => {
-        console.log("Document successfully written!");
-      }).catch((error) => {
-        console.error("Error writing document: ", error);
-      });
   
     }).catch((error) => {
       // Handle Errors here.
