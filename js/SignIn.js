@@ -11,8 +11,7 @@ const firebaseConfig = {
   };
   
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+  firebase.initializeApp(firebaseConfig);
 
   //Google login
   $('#google-login-button').click(function () {
@@ -30,8 +29,8 @@ const firebaseConfig = {
       var user = result.user;
       
       // User is signed in.
-      console.log("Sign in through Google username: " + user.email);
-  
+      console.log("Sign in through Google username: " + user);
+
     }).catch((error) => {
       // Handle Errors here.
       var errorCode = error.code;
