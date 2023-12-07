@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Jquery library   ---->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">
+    </script>
+    <title>Banksia Pages</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
+    <script src="../js/SignIn.js"></script>
+</head>
+
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <a class="nav-title" href="#">Banksia<b>Pages</b></a>
+        <div class="header-buttons">
+            <a href="signin.html">sign in</a>
+        </div>
+        <div class="header-links">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="blogslist.html">Blogs</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Box for Google Login -->
+    <div id="signInBox">
+        <div class="google-signin-box">
+        <div class="google-signin-button">
+            <!-- If user selects sign in it will call Signin.js -->
+            <input type="button" value="Sign In with Google" id="google-login-button">
+        </div>
+    </div>
+</body>
