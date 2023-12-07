@@ -204,6 +204,70 @@ main {
     width: 300px;
 }
 /*Create account page style*/
+.createaccount_container{
+    background: linear-gradient(rgba(255, 163, 59, 0.4), rgba(0, 0, 0, 0.4)),
+        /*shadow over background image*/
+        url('../img/britishlibrary_space.jpg');
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: 150% 150%;
+}
+.createaccount_content-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0em 5em;
+    padding: 5em 5em;
+}
+.createaccount_header-text{
+    background: rgb(255, 255, 255);
+    border: 1px solid #ff6600;
+    margin: 1em 1em;
+    height: 30em;
+    border-radius: 10px;
+    padding: 0em 1em;
+}
+.createaccount_header-text h1{
+    font-size: 24px;
+}
+.createaccount_header-text p{
+    font-size: 18px;
+}
+.createaccount_form{
+    flex-grow: 1;
+    background: rgb(255, 255, 255);
+    margin: 1em 1em;
+    border: 1px solid #ff6600;
+    padding: 0 15%;
+    height: 30em;
+    width: 75%;
+    border-radius: 10px;
+    text-align: left;
+}
+.createaccount_form #submit{
+    font-family: "Montagu Slab", "Sans-serif";
+    color: white;
+    background-color: #ff6600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    height: 3em;
+    transition: 0.5s;
+}
+.createaccount_form #submit:hover{
+    background-color: #ff8534;
+}
+.createaccount_form #bio, .createaccount_form #username{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+.createaccount_form #bio:hover, .createaccount_form #username:hover{
+    border: 1px solid black;
+}
 
 /* Top Navigation Bar styles */
 .top-nav {

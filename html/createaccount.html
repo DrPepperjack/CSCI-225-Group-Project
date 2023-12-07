@@ -10,7 +10,7 @@ an account, they are directed to their own blog's page-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Banksia Pages</title>
 </head>
-
+<div class="createaccount_container">
 <body>
     <!-- Top Navigation Bar -->
     <nav class="top-nav">
@@ -26,22 +26,25 @@ an account, they are directed to their own blog's page-->
             </ul>
         </div>
     </nav>
-    <div class="createaccount">
+    <div class="createaccount_content-container">
+    <header class="createaccount_header-text">
+        <p>
+            <h1>Welcome to Banksia Pages</h1>
+            <p>Before you can start blogging, you need to pick out a username, bio, and profile picture.</p>
+        </p>
+    </header>
+        <div class="createaccount_form">
         <form action="" name="createaccount_form">
             <p>
-                <h1>Welcome to Banksia Pages!</h1>
-                <p>Before you start blogging, you need to pick out a username, bio, and profile picture!</p>
+                <p><b>Blog name:</b></p>
+                <input type="text" id="username" placeholder="">
             </p>
             <p>
-                Username/blog name:
-                <input type="text" id="username">
+                <p><b>Bio:</b></p>
+                <textarea name="bio" id="bio" cols="50" rows="5" placeholder="Tell us a little about yourself. What will you be blogging about?"></textarea>
             </p>
             <p>
-                Enter a bio: 
-                <input type="text" id="bio" size="20">
-            </p>
-            <p>
-                Profile picture:
+            <b>Profile picture:</b>
                 <select name="pfp" id="pfp" onchange="updatePreview()">
                     <option value="../img/profile_img/BanksiaAvis/BanksiaAvi1.png">Image 1</option>
                     <option value="../img/profile_img/BanksiaAvis/BanksiaAvi2.png">Image 2</option>
@@ -58,7 +61,7 @@ an account, they are directed to their own blog's page-->
                 <img src="../img/profile_img/BanksiaAvis/BanksiaAvi1.png" id="pfp_prev" style="height: 15%; width: 15%;">
             </p>
             <p>
-                <input type="submit" id="submit" value="Submit">
+                <input type="submit" id="submit" value="Create account">
             </p>
         </form>
         <script > /*script for updating the image preview.*/
@@ -69,7 +72,7 @@ an account, they are directed to their own blog's page-->
             }
         </script>
     </div>
-    
+</div>
     <!-- Footer -->
     <footer>
         <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
@@ -80,5 +83,6 @@ an account, they are directed to their own blog's page-->
 	<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
 </body>
+</div>
 
 </html>
