@@ -9,25 +9,93 @@
 </head>
 
 <body>
-    <!-- Add Firebase SDK for Banksia Pages Database -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyD6KA0ECIAB3scXNUu7mxgjmbmnhjOSEVc",
-            authDomain: "banksia-pages-database.firebaseapp.com",
-            projectId: "banksia-pages-database",
-            storageBucket: "banksia-pages-database.appspot.com",
-            messagingSenderId: "239610874789",
-            appId: "1:239610874789:web:80bcede53d7ef4ba26764c",
-            measurementId: "G-JV3QXR7P2H"
-        };
 
+<!-- Add Firebase SDK for Banksia Pages Database -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyD6KA0ECIAB3scXNUu7mxgjmbmnhjOSEVc",
+        authDomain: "banksia-pages-database.firebaseapp.com",
+        projectId: "banksia-pages-database",
+        storageBucket: "banksia-pages-database.appspot.com",
+        messagingSenderId: "239610874789",
+        appId: "1:239610874789:web:80bcede53d7ef4ba26764c",
+        measurementId: "G-JV3QXR7P2H"
+    };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-    </script>
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Assuming you have a specific user ID (for demonstration purposes)
+    const userId = 'user123'; // Replace with your actual user ID
+
+    // User document reference
+    const userRef = db.collection('users').doc(userId);
+
+    // User Information
+    // Fetch user data from Firestore
+    userRef.get().then((doc) => {
+        if (doc.exists) {
+            // Get user data from the document
+            const userData = doc.data();
+
+            // Update HTML elements with user data
+            const profilePic = document.querySelector('.profile-pic-container img');
+            profilePic.src = userData.profilePicURL; // Update profile picture
+
+            const blogUsername = document.querySelector('.blog_username');
+            blogUsername.textContent = userData.username; // Update username
+
+            const blogBio = document.querySelector('.blog_bio');
+            blogBio.textContent = userData.bio; // Update bio
+        } else {
+            console.log('No such document!');
+        }
+    }).catch((error) => {
+        console.log('Error getting document:', error);
+    });
+
+    // Create Post
+    const createPostForm = document.getElementById('create-post-form');
+
+    createPostForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Get input values
+        const postTitle = document.getElementById('post-title').value;
+        const postContent = document.getElementById('post-content').value;
+
+        // Add post to Firestore
+        db.collection('posts').add({
+            title: postTitle,
+            content: postContent,
+            // Add other post details as needed
+            // You might want to include author ID, timestamp, etc.
+        })
+            .then((docRef) => {
+                console.log('Post added with ID: ', docRef.id);
+                // Clear form after successful submission
+                createPostForm.reset();
+            })
+            .catch((error) => {
+                console.error('Error adding post: ', error);
+            });
+    });
+
+    // Sign Out
+    const signOutButton = document.getElementById('signout');
+
+    signOutButton.addEventListener('click', () => {
+        firebase.auth().signOut().then(() => {
+            console.log('Signed out successfully.');
+            // Redirect or update UI as needed after sign out
+        }).catch((error) => {
+            console.error('Sign out error: ', error);
+        });
+    });
+</script>
 
     <!-- Top Navigation Bar -->
     <nav class="top-nav">
@@ -47,26 +115,38 @@
         </div>
     </nav>
 
-<!-- Header class will be on left side with user info-->
+    <!-- Header class will be on left side with user info-->
     <header class="user-info">
-    <main>
-        <!-- Link user info to database so it pulls user image instead of pre-selected image in code-->
-        <div class="profile-pic-container">
-            <img src="your-image-url" alt="Profile Picture">
-        </div>
-        usr
-        <header class="blog_username">
-            Blog header content
-        </header>
-        <article class="blog_bio">
-            Blog post content
-        </article>
+        <div class="profile-info">
 
-        <aside class="sidebar">
-            Sidebar content
-        </aside>
-    </main>
-</header>
+            <!-- Link user info to database so it pulls user image instead of pre-selected image in code-->
+
+            <div class="profile-pic-container">
+                <img src="your-image-url" alt="Profile Picture">
+            </div>
+
+            <h1 class="blog_username">
+                Blog header content
+            </h1>
+
+            <article class="blog_bio">
+                Blog post content
+            </article>
+
+            <aside class="sidebar">
+                <div class="create-post">
+                    <h2>Create Post</h2>
+                    <form id="create-post-form">
+                        <label for="post-title">Title:</label>
+                        <input type="text" id="post-title" name="post-title" required><br><br>
+                        <label for="post-content">Content:</label><br>
+                        <textarea id="post-content" name="post-content" rows="4" cols="50" required></textarea><br><br>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </header>
 
     <!-- Blog Post Template -->
     <article class="blog-post px-3 py-5 p-md-5">
@@ -91,21 +171,22 @@
                         <div class="comment">
                             <p>User B: I found this very helpful. Thanks!</p>
                         </div>
-                        <div class = "view-comments-button">
+                        <div class="view-comments-button">
                             <button type="button">View All Comments</button>
+                        </div>
+
+                        <!-- Form for users to submit new comments -->
+                        <form id="comment-form">
+                            <label for="user-name">Name:</label>
+                            <input type="text" id="user-name" name="user-name" required><br><br>
+                            <label for="user-comment">Comment:</label><br>
+                            <textarea id="user-comment" name="user-comment" rows="4" cols="50"
+                                required></textarea><br><br>
+                            <button type="submit">Submit</button>
+                        </form>
                     </div>
 
-                    <!-- Form for users to submit new comments -->
-                    <form id="comment-form">
-                        <label for="user-name">Name:</label>
-                        <input type="text" id="user-name" name="user-name" required><br><br>
-                        <label for="user-comment">Comment:</label><br>
-                        <textarea id="user-comment" name="user-comment" rows="4" cols="50" required></textarea><br><br>
-                        <button type="submit">Submit</button>
-                    </form>
                 </div>
-
-            </div>
     </article>
 </body>
 
