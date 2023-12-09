@@ -39,7 +39,7 @@ $('#google-login-button').click(function () {
             })
                 .then(() => {
                     console.log("User successfully written!");
-                    window.location.href = "../html/createaccount.html"
+                    window.location.href = "html/createaccount.html"
                 })
                 .catch((error) => {
                     console.error("Error writing user: ", error);
