@@ -4,6 +4,7 @@
 isn't already an account in the database, the user is then redirected to this page. if they already have 
 an account, they are directed to their own blog's page-->
 <!--still working on the styling for this page -autumn -->
+
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../css/main.css">
@@ -11,78 +12,114 @@ an account, they are directed to their own blog's page-->
     <title>Banksia Pages</title>
 </head>
 <div class="createaccount_container">
-<body>
-    <!-- Top Navigation Bar -->
-    <nav class="top-nav">
-        <a class="nav-title" href="#">Banksia<b>Pages</b></a>
-        <div class="header-buttons">
-            <a href="signin.html">sign in</a>
-        </div>
-        <div class="header-links">
-            <ul>
-                <li><a href="BanksiaPages.html">Home</a></li>
-                <li><a href="blogslist.html">Blogs</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="createaccount_content-container">
-    <header class="createaccount_header-text">
-        <p>
-            <h1>Welcome to Banksia Pages</h1>
-            <p>Before you can start blogging, you need to pick out a username, bio, and profile picture.</p>
-        </p>
-    </header>
-        <div class="createaccount_form">
-        <form action="" name="createaccount_form">
-            <p>
-                <p><b>Blog name:</b></p>
-                <input type="text" id="username" placeholder="">
-            </p>
-            <p>
-                <p><b>Bio:</b></p>
-                <textarea name="bio" id="bio" cols="50" rows="5" placeholder="Tell us a little about yourself. What will you be blogging about?"></textarea>
-            </p>
-            <p>
-            <b>Profile picture:</b>
-                <select name="pfp" id="pfp" onchange="updatePreview()">
-                    <option value="../img/profile_img/BanksiaAvis/BanksiaAvi1.png">Image 1</option>
-                    <option value="../img/profile_img/BanksiaAvis/BanksiaAvi2.png">Image 2</option>
-                    <option value="../img/profile_img/BanksiaAvis/BanksiaAvi3.png">Image 3</option>
-                    <option value="../img/profile_img/BanksiaAvis/BanksiaAvi4.png">Image 4</option>
-                    <option value="../img/profile_img/BanksiaAvis/BanksiaAvi5.png">Image 5</option>
-                    <option value="../img/profile_img/BanksiaAvis/BanksiaAvi6.png">Image 6</option>
-                    <option value="../img/profile_img/BanksiaAvis/BanksiaAvi7.png">Image 7</option>
-                    <option value="../img/profile_img/BanksiaAvis/BanksiaAvi8.png">Image 8</option>
-                    <option value="../img/profile_img/BanksiaAvis/BanksiaAvi9.png">Image 9</option>
-                </select>
-            </p>
-            <p>
-                <img src="../img/profile_img/BanksiaAvis/BanksiaAvi1.png" id="pfp_prev" style="height: 15%; width: 15%;">
-            </p>
-            <p>
-                <input type="submit" id="submit" value="Create account">
-            </p>
-        </form>
-        <script > /*script for updating the image preview.*/
-            function updatePreview(){
-                var select = document.getElementById("pfp").value;
-                var pfp_prev = document.getElementById("pfp_prev");
-                pfp_prev.src=select;
-            }
-        </script>
-    </div>
-</div>
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
-    </footer>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
-</body>
+    <body>
+        <!-- Top Navigation Bar -->
+        <nav class="top-nav">
+            <a class="nav-title" href="#">Banksia<b>Pages</b></a>
+            <div class="header-buttons">
+                <a href="signin.html">sign in</a>
+            </div>
+            <div class="header-links">
+                <ul>
+                    <li><a href="BanksiaPages.html">Home</a></li>
+                    <li><a href="blogslist.html">Blogs</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="createaccount_content-container">
+            <header class="createaccount_header-text">
+                <p>
+                <h1>Welcome to Banksia Pages</h1>
+                <p>Before you can start blogging, you need to pick out a username, bio, and profile picture.</p>
+                </p>
+            </header>
+            <div class="createaccount_form">
+                <form action="" name="createaccount_form">
+                    <p>
+                    <p><b>Blog name:</b></p>
+                    <input type="text" id="username" placeholder="">
+                    </p>
+                    <p>
+                    <p><b>Bio:</b></p>
+                    <textarea name="bio" id="bio" cols="50" rows="5"
+                        placeholder="Tell us a little about yourself. What will you be blogging about?"></textarea>
+                    </p>
+                    <p>
+                        <b>Profile picture:</b>
+                        <select name="pfp" id="pfp" onchange="updatePreview()">
+                            <option value="../img/profile_img/BanksiaAvis/BanksiaAvi1.png">Image 1</option>
+                            <option value="../img/profile_img/BanksiaAvis/BanksiaAvi2.png">Image 2</option>
+                            <option value="../img/profile_img/BanksiaAvis/BanksiaAvi3.png">Image 3</option>
+                            <option value="../img/profile_img/BanksiaAvis/BanksiaAvi4.png">Image 4</option>
+                            <option value="../img/profile_img/BanksiaAvis/BanksiaAvi5.png">Image 5</option>
+                            <option value="../img/profile_img/BanksiaAvis/BanksiaAvi6.png">Image 6</option>
+                            <option value="../img/profile_img/BanksiaAvis/BanksiaAvi7.png">Image 7</option>
+                            <option value="../img/profile_img/BanksiaAvis/BanksiaAvi8.png">Image 8</option>
+                            <option value="../img/profile_img/BanksiaAvis/BanksiaAvi9.png">Image 9</option>
+                        </select>
+                    </p>
+                    <p>
+                        <img src="../img/profile_img/BanksiaAvis/BanksiaAvi1.png" id="pfp_prev"
+                            style="height: 15%; width: 15%;">
+                    </p>
+                    <p>
+                        <input type="submit" id="submit" value="Create account">
+                    </p>
+                </form>
+                <script> /*script for updating the image preview.*/
+                    function updatePreview() {
+                        var select = document.getElementById("pfp").value;
+                        var pfp_prev = document.getElementById("pfp_prev");
+                        pfp_prev.src = select;
+                    }
+                </script>
+                <script>
+                    // Handle form submission
+                    document.getElementById('submit').addEventListener('click', function (event) {
+                        event.preventDefault(); // prevent the form from submitting normally
+
+                        // Get the form values
+                        var username = document.getElementById('username').value;
+                        var bio = document.getElementById('bio').value;
+                        var pfp = document.getElementById('pfp').value;
+
+                        // Get the current user
+                        var user = firebase.auth().currentUser;
+
+                        if (user) {
+                            // User is signed in, update their document
+                            firebase.firestore().collection("UserData").doc(user.displayName).update({
+                                blogName: username,
+                                bio: bio,
+                                profilePicture: pfp,
+                                // add other user properties
+                            })
+                                .then(() => {
+                                    console.log("User successfully updated!");
+                                })
+                                .catch((error) => {
+                                    console.error("Error updating user: ", error);
+                                });
+                        } else {
+                            // No user is signed in.
+                            console.log("No user is signed in.");
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
+        </footer>
+
+        <!-- Firebase SDK -->
+        <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
+    </body>
 </div>
 
 </html>
