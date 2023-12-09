@@ -35,7 +35,6 @@ $('#google-login-button').click(function () {
             firebase.firestore().collection("UserData").doc(user.displayName).set({
                 name: user.displayName,
                 email: user.email,
-                blog: blogPost,
                 // add other user properties
             })
                 .then(() => {
