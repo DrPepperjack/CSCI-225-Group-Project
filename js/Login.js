@@ -32,9 +32,10 @@ $('#google-login-button').click(function () {
             console.log("Sign in through Google username: " + user.displayName);
 
             // Add a new document in collection "UserData" with ID 'user.uid'
-            firebase.firestore().collection("UserData").doc(user.uid).set({
+            firebase.firestore().collection("UserData").doc(user.displayName).set({
                 name: user.displayName,
                 email: user.email,
+                blog: blogPost,
                 // add other user properties
             })
                 .then(() => {
