@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../css/blog_template.css/blog-temp.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Banksia Pages</title>
 </head>
 
@@ -28,11 +28,10 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // Assuming you have a specific user ID (for demonstration purposes)
-        const userId = 'user123'; // Replace with your actual user ID
+        const userId = '#'; // Replace with your actual user ID
 
         // User document reference
-        const userRef = db.collection('users').doc(userId);
+        const userRef = db.collection('UserData').doc(userId);
 
         // User Information
         // Fetch user data from Firestore
@@ -156,10 +155,16 @@
         <main class="blog-list">
             <div class="container">
                 <div class="blog-post-header">
-                    <h1>Title of the Blog Post</h1>
-                    <p>Author: John Doe</p>
-                    <p>Date: January 1, 2023</p>
-
+                    <div class="blog-post-title">
+                        <h1>"Unveiling the Myth: Exploring the Secrets of Timelessness"</h1>
+                    </div>
+                    <div class="blog-post-author">
+                        <p>Author: John Doe</p>
+                    </div>
+                    <!-- Add date to database so it pulls date instead of pre-selected date in code-->
+                    <div class="blog-post-date">
+                        <p>Date: January 1, 2023</p>
+                    </div>
                     <div class="blog-post-body">
                         <!-- Blog post body content -->
                     </div>
@@ -178,6 +183,9 @@
                             <div class="view-comments-button">
                                 <button type="button">View All Comments</button>
                             </div>
+                            <div class="view-full-posts">
+                                <button type="button" id="load-more-button">View Post</button>
+                            </div>
 
                             <!-- Form for users to submit new comments
                             <form id="comment-form">
@@ -191,7 +199,7 @@
                             -->
                         </div>
                     </div>
-                </main>
+        </main>
 </body>
 
 </html>

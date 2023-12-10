@@ -3,13 +3,13 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD6KA0ECIAB3scXNUu7mxgjmbmnhjOSEVc",
-  authDomain: "banksia-pages-database.firebaseapp.com",
-  projectId: "banksia-pages-database",
-  storageBucket: "banksia-pages-database.appspot.com",
-  messagingSenderId: "239610874789",
-  appId: "1:239610874789:web:80bcede53d7ef4ba26764c",
-  measurementId: "G-JV3QXR7P2H"
+apiKey: "AIzaSyD6KA0ECIAB3scXNUu7mxgjmbmnhjOSEVc",
+authDomain: "banksia-pages-database.firebaseapp.com",
+projectId: "banksia-pages-database",
+storageBucket: "banksia-pages-database.appspot.com",
+messagingSenderId: "239610874789",
+appId: "1:239610874789:web:80bcede53d7ef4ba26764c",
+measurementId: "G-JV3QXR7P2H"
 };
 
 // Assuming you have a specific user ID (for demonstration purposes)
@@ -69,12 +69,55 @@ createPostForm.addEventListener('submit', (e) => {
     });
 });
 
+// View Post and view more posts of users
+const blogContainer = document.querySelector('.blog-lists');
+const loadMoreButton = document.querySelector('.load-more-button');
+
+// Function to fetch and display blog posts from Firebase
+function fetchBlogPosts() {
+    // Fetch blog posts from Firebase (example)
+    firebase.database().ref('blogPosts').once('value', (snapshot) => {
+        snapshot.forEach((postSnapshot) => {
+            const post = postSnapshot.val();
+
+            // Create HTML structure for each blog post
+            const postHTML = `
+                <div class="blog-post">
+                    <div class="blog-post-header">
+                        <h1>${post.title}</h1>
+                        <p>Author: ${post.author}</p>
+                        <p>Date: ${post.date}</p>
+                        <!-- Additional content -->
+                    </div>
+                    <!-- Additional content -->
+                </div>
+            `;
+
+            // Append the HTML for each post to the blog container
+            blogContainer.innerHTML += postHTML;
+        });
+    });
+}
+
+// Initial load of blog posts
+fetchBlogPosts();
+
+// Event listener for "Load More" button
+loadMoreButton.addEventListener('click', () => {
+    // Fetch more posts or load more content here
+    // For example, you can implement pagination or load additional posts on button click
+    // Fetching more posts will depend on your Firebase database structure
+    // and the logic for retrieving the next set of posts
+    // Ensure to append new posts to the blog container
+});
+
+
 // sign out code
 $("#signout").click(function() {
     firebase.auth().signOut().then(() => {
         // Sign-out successful.
-      })
-      .catch((error) => {
+    })
+    .catch((error) => {
         console.log(user, "Signed out");
-      });
-  });
+    });
+});
