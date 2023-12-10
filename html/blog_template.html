@@ -11,8 +11,9 @@
 <body>
 
     <!-- Add Firebase SDK for Banksia Pages Database -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyD6KA0ECIAB3scXNUu7mxgjmbmnhjOSEVc",
@@ -97,7 +98,7 @@
     </script>
 
     <!-- Top Navigation Bar -->
-    <nav class="top-nav">
+    <nav class="top-nav" id="navbar">
         <a class="nav-title" href="#">Banksia<b>Pages</b></a>
         <div class="header-buttons">
             <!-- When user is signed-in add sign out function-->
@@ -200,6 +201,7 @@
                         </div>
                     </div>
         </main>
+        <script src="js/auth-listener.js"></script>
 </body>
 
 </html>
