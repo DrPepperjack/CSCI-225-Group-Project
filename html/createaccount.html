@@ -10,6 +10,25 @@ an account, they are directed to their own blog's page-->
     <link rel="stylesheet" href="../css/main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Banksia Pages</title>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyD6KA0ECIAB3scXNUu7mxgjmbmnhjOSEVc",
+            authDomain: "banksia-pages-database.firebaseapp.com",
+            projectId: "banksia-pages-database",
+            storageBucket: "banksia-pages-database.appspot.com",
+            messagingSenderId: "239610874789",
+            appId: "1:239610874789:web:80bcede53d7ef4ba26764c",
+            measurementId: "G-JV3QXR7P2H"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
 </head>
 <div class="createaccount_container">
 
@@ -38,11 +57,11 @@ an account, they are directed to their own blog's page-->
             <div class="createaccount_form">
                 <form action="" name="createaccount_form">
                     <p>
-                    <p><b>Blog name:</b></p>
+                    <p><b>Blog Username:</b></p>
                     <input type="text" id="username" placeholder="">
                     </p>
                     <p>
-                    <p><b>Bio:</b></p>
+                    <p><b>User Bio:</b></p>
                     <textarea name="bio" id="bio" cols="50" rows="5"
                         placeholder="Tell us a little about yourself. What will you be blogging about?"></textarea>
                     </p>
@@ -115,11 +134,6 @@ an account, they are directed to their own blog's page-->
         <footer>
             <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
         </footer>
-
-        <!-- Firebase SDK -->
-        <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
     </body>
 </div>
 
