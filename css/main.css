@@ -303,7 +303,7 @@ main {
 }
 
 /* Google Sign-In Button styles */
-.google-signin-button {
+#google-login-button {
     position: relative;
     display: inline-flex;
     text-align: center;
@@ -323,11 +323,11 @@ main {
     padding-top: 0.1em;
 }
 
-.google-signin-button:hover {
+#google-login-button:hover {
     border: 1px solid white;
 }
 
-.google-signin-button::before{
+#google-login-button::before{
     content: '';
     position: absolute;
     top: 0;
@@ -339,7 +339,13 @@ main {
     border-radius: 5px;
 }
 
-.google-signin-button a {
+#google-login-button a {
     text-decoration: none;
     color: #fff;
+}
+
+#google-login-button img {
+    height: 20px;
+    width: 20px;
+    padding-right: 0.5em;
 }
