@@ -1,48 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <!-- Call the main.css stylesheet -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">
-		</script>
-    <title>Banksia Pages</title>
-</head>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous">
+    </script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyD6KA0ECIAB3scXNUu7mxgjmbmnhjOSEVc",
+            authDomain: "banksia-pages-database.firebaseapp.com",
+            projectId: "banksia-pages-database",
+            storageBucket: "banksia-pages-database.appspot.com",
+            messagingSenderId: "239610874789",
+            appId: "1:239610874789:web:80bcede53d7ef4ba26764c",
+            measurementId: "G-JV3QXR7P2H"
+        };
 
-<body>
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <title>Banksia Pages</title>
+  </head>
+
+  <body>
     <!-- Top Navigation Bar -->
     <nav class="top-nav">
-        <a class="nav-title" href="#">Banksia<b>Pages</b></a>
-        <div class="header-buttons">
-            <a href="html/signin.html">sign in</a>
-            <!--<a href="#">Sign Up</a> commented out so we could have one button for signing in or signing up.
+      <a class="nav-title" href="#">Banksia<b>Pages</b></a>
+      <div class="header-buttons">
+        <a href="html/signin.html">sign in</a>
+        <!--<a href="#">Sign Up</a> commented out so we could have one button for signing in or signing up.
             can add back if necessary-->
-        </div>
-        <div class="header-links">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="html/blogslist.html">Blogs</a></li>
-                <li><a href="html/about.html">About</a></li>
-            </ul>
-        </div>
+      </div>
+      <div class="header-links">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="html/blogslist.html">Blogs</a></li>
+          <li><a href="html/about.html">About</a></li>
+        </ul>
+      </div>
     </nav>
     <!-- Header with buttons -->
     <header class="header first-section">
-        <div class="header-content">
-            <h1>sign up. <b>start blogging.</b></h1>
-            <p><i>it's that easy.</i></p>
-            <!-- Google Sign-In Button -->
-            <button id="google-login-button">
-                <img src="img/google-logo.png" alt="Google Logo"> Sign In With Google
-            </button>
-        </div>
+      <div class="header-content">
+        <h1>sign up. <b>start blogging.</b></h1>
+        <p><i>it's that easy.</i></p>
+        <!-- Google Sign-In Button -->
+        <button id="google-login-button">
+          <img src="img/google-logo.png" alt="Google Logo" /> Sign In With Google
+        </button>
+      </div>
     </header>
     <!-- Main Section -->
     <main>
-        <!--
+      <!--
         <h2>Empower Your Voice</h2>
         <p>Connect with your audience through blogs and more.</p>
         <div class="feature">
@@ -59,10 +74,10 @@
         </div>
         -->
 
-        <!-- About the Creators-->
-        <!-- Edit to be seperate from main page-->
-        <div class="about">
-            <!--
+      <!-- About the Creators-->
+      <!-- Edit to be seperate from main page-->
+      <div class="about">
+        <!--
             <h1>About the Creators</h1>
             <p>Meet the team behind Banksia Pages</p>
             <div class="about-content">
@@ -83,10 +98,10 @@
                 <h2>Creator Grade and major</h2>
                 <p>Creator Bio</p>
             -->
-        </div>
+      </div>
 
-        <!-- Featured Blogs -->
-        <!--
+      <!-- Featured Blogs -->
+      <!--
     <article class="featured-blogs">
         <h1>Featured Blogs</h1>
         <div class="featured-blog">
@@ -106,14 +121,54 @@
         </div>
     </article>
         -->
-
     </main>
-
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
+      <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
     </footer>
+
+    <script>
+    // Changing the Sign In button to a Log Out button if the user is signed in
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          // User is signed in.
+          // Change the "Sign In" button to a "Log Out" button
+          var signInButton = document.querySelector(
+            'a[href="html/signin.html"]'
+          );
+          if (signInButton) {
+            signInButton.textContent = "Log Out";
+            signInButton.href = "#";
+            signInButton.addEventListener("click", function (e) {
+              e.preventDefault();
+              firebase
+                .auth()
+                .signOut()
+                .then(function () {
+                  // Sign-out successful.
+                  console.log("User signed out.");
+                  window.location.reload(); // Reload the page to update the button text
+                })
+                .catch(function (error) {
+                  // An error happened.
+                  console.error("Error signing out: ", error);
+                });
+            });
+          }
+        } else {
+          // No user is signed in.
+          // Ensure the button says "Sign In"
+          var signInButton = document.querySelector(
+            'a[href="html/signin.html"]'
+          );
+          if (signInButton) {
+            signInButton.textContent = "Sign In";
+            signInButton.href = "html/signin.html";
+          }
+        }
+      });
+    </script>
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
@@ -122,6 +177,5 @@
 
     <!-- Google Sign in Button -->
     <script src="js/Login.js"></script>
-</body>
-
+  </body>
 </html>

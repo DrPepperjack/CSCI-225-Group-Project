@@ -20,30 +20,35 @@ $('#google-login-button').click(function () {
     firebase.auth()
         .signInWithPopup(provider)
         .then((result) => {
-            /** @type {firebase.auth.OAuthCredential} */
-            var credential = result.credential;
-
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = credential.accessToken;
-            // The signed-in user info.
             var user = result.user;
 
             // User is signed in.
             console.log("Sign in through Google username: " + user.displayName);
 
-            // Add a new document in collection "UserData" with ID 'user.uid'
-            firebase.firestore().collection("UserData").doc(user.displayName).set({
-                name: user.displayName,
-                email: user.email,
-                // add other user properties
-            })
-                .then(() => {
-                    console.log("User successfully written!");
-                    window.location.href = "html/createaccount.html"
-                })
-                .catch((error) => {
-                    console.error("Error writing user: ", error);
-                });
+            // Check if user document already exists
+            var userDocRef = firebase.firestore().collection("UserData").doc(user.displayName);
+            userDocRef.get().then((doc) => {
+                if (doc.exists) {
+                    // User document exists, redirect to index.html
+                    window.location.href = "index.html";
+                } else {
+                    // User document does not exist, create it
+                    userDocRef.set({
+                        name: user.displayName,
+                        email: user.email,
+                        // add other user properties
+                    })
+                    .then(() => {
+                        console.log("User successfully written!");
+                        window.location.href = "html/createaccount.html";
+                    })
+                    .catch((error) => {
+                        console.error("Error writing user: ", error);
+                    });
+                }
+            }).catch((error) => {
+                console.log("Error getting user document:", error);
+            });
 
         }).catch((error) => {
             // Handle Errors here.
@@ -53,5 +58,6 @@ $('#google-login-button').click(function () {
             console.log("Error: " + errorMessage);
             // The email of the user's account used.
             var email = error.email;
-        })
+            // ...
+        });
 });
