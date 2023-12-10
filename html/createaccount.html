@@ -110,8 +110,8 @@ an account, they are directed to their own blog's page-->
                         if (user) {
                             // User is signed in, update their document
                             firebase.firestore().collection("UserData").doc(user.displayName).update({
-                                blogName: username,
-                                bio: bio,
+                                blogUserName: username,
+                                blogBio: bio,
                                 profilePicture: pfp,
                                 // add other user properties
                             })
