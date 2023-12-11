@@ -72,21 +72,6 @@
             <!-- Featured Blogs -->
     <article class="featured-blogs">
         <h1>Featured Blogs</h1>
-        <div class="featured-blog">
-            <img src="your-image-url" alt="Featured User Profile Image">
-            <h3>Blog Author<h3>
-            <p>Blog Content</p>
-        </div>
-        <div class="featured-blog">
-            <img src="your-image-url" alt="Featured User Profile Image">
-            <h3>Blog Author<h3>
-            <p>Blog Content</p>
-        </div>
-        <div class="featured-blog">
-            <img src="your-image-url" alt="Featured User Profile Image">
-            <h3>Blog Author<h3>
-            <p>Blog Content</p>
-        </div>
     </article>
 
         
@@ -97,7 +82,7 @@
         var db = firebase.firestore();
       
         // Get a reference to the container element
-        var container = document.querySelector('main');
+        var container = document.querySelector('.featured-blogs');
       
         // Get all documents from the "blogPosts" collection
         db.collection("blogPosts").get().then((querySnapshot) => {
