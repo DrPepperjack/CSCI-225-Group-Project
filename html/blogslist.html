@@ -101,16 +101,23 @@
                 var username = document.createElement('p');
                 username.textContent = "Created By: " + " " + doc.data().blogUsername;
           
-                // Create an img element for the user's profile picture
-                var profilePicture = document.createElement('img');
-                profilePicture.src = doc.data().profilePicture;
-                profilePicture.style.width = '50px'; // Set the width of the profile picture
-                profilePicture.style.height = '50px'; // Set the height of the profile picture
-
-                console.log('Profile picture URL:', profilePicture.src);
+                // Fetch the user data from the UserData collection
+                db.collection("UserData").doc(doc.data().blogUsername).get().then((userDoc) => {
+                  if (userDoc.exists) {
+                    // Create an img element for the user's profile picture
+                    var profilePicture = document.createElement('img');
+                    profilePicture.src = userDoc.data().profilePicture;
+                    profilePicture.style.width = '50px'; // Set the width of the profile picture
+                    profilePicture.style.height = '50px'; // Set the height of the profile picture
           
-                // Prepend the profile picture to the username
-                username.prepend(profilePicture);
+                    console.log('Profile picture URL:', profilePicture.src);
+          
+                    // Prepend the profile picture to the username
+                    username.prepend(profilePicture);
+                  } else {
+                    console.log('No user data found for username:', doc.data().blogUsername);
+                  }
+                });
           
                 // Append the title, date, content, and username to the postDiv
                 postDiv.appendChild(title);
