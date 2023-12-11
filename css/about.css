@@ -129,7 +129,6 @@ b {
     z-index: -1;
 }
 
-
 /* Animation for the title */
 @keyframes fade-in {
     from {
@@ -143,7 +142,17 @@ b {
     }
 }
 
-
+/*Main blog styles*/
+.main blog-info{
+    padding: 50px 0;
+    margin-top: 50px;
+}
+/* Featured blogs style*/
+.main featured-blogs {
+    background-image: url('../img/blogs_lists_img/Stock-Photo-4.jpg');
+    padding: 50px 0;
+    margin-top: 50px;
+}
 
 /* Subscribe section styles */
 .subscribe {
@@ -169,80 +178,11 @@ b {
     background-color: #e55e00;
 }
 
-/* About section styles */
-.about {
-    background-image: url('../img/Banksia.jpg');
-    background-size: cover;
-    justify-content: center;
-    align-items: center;
-    border-style: ridge;
-}
-
-.about h1{
-    text-align: center;
-    font-size: 2em;
-    justify-content: center;
-    align-items: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-.about h2{
-    text-align: center;
-    font-size: 2em;
-    justify-content: center;
-    align-items: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-
-.about-content {
-    max-width: 600px;
-    margin: 0 auto;
-    justify-content: center;
-    align-items: center;
-}
-
-.about-content img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    height: 400px;
-    width: 300px;
-}
-
 .img-container{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-
-.about-content p {
-    font-size: 1.5em;
-    border-style: groove;
-    border-color: #ff6600;
-    border-radius: 8px;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(5px);
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-.about-content h2 {
-    font-size: 1.5em;
-    border-style: groove;
-    border-color: #ff6600;
-    border-radius: 8px;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    backdrop-filter: blur(5px);
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
 
 /* Top Navigation Bar styles */
 .top-nav {
@@ -272,7 +212,6 @@ b {
     padding: 20px 0;
     background-color: #1a0000;
     color: #fff;
-    position: absolute;
     bottom: 0;
     width: 100%;
 }
