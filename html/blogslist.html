@@ -107,33 +107,27 @@
 
                         console.log('Fetching user data for username:', doc.data().blogUsername);
 
-                        // Get all documents from the "UserData" collection
-                        db.collection("UserData").get().then((querySnapshot) => {
+                        // Get all documents from the "UserData" collection where blogUsername matches
+                        db.collection("UserData").where("blogUsername", "==", doc.data().blogUsername).get().then((querySnapshot) => {
                             querySnapshot.forEach((userDoc) => {
-                                // Check if the blogUsername matches
-                                if (userDoc.data().blogUsername === doc.data().blogUsername) {
-                                    // Create an img element for the user's profile picture
-                                    var profilePicture = document.createElement('img');
-                                    profilePicture.src = userDoc.data().profilePicture;
-                                    profilePicture.style.width = '50px'; // Set the width of the profile picture
-                                    profilePicture.style.height = '50px'; // Set the height of the profile picture
-                                    profilePicture.style.marginRight = '10px'; // Add some space between the picture and the username
+                                // Create an img element for the user's profile picture
+                                var profilePicture = document.createElement('img');
+                                profilePicture.src = userDoc.data().profilePicture;
+                                profilePicture.style.width = '50px'; // Set the width of the profile picture
+                                profilePicture.style.height = '50px'; // Set the height of the profile picture
+                                profilePicture.style.marginRight = '10px'; // Add some space between the picture and the username
 
-                                    console.log('Profile picture URL:', profilePicture.src);
+                                console.log('Profile picture URL:', profilePicture.src);
 
-                                    // Prepend the profile picture to the userDiv
-                                    userDiv.prepend(profilePicture);
+                                // Prepend the profile picture to the userDiv
+                                userDiv.prepend(profilePicture);
 
-                                    // Append the username to the userDiv
-                                    userDiv.appendChild(username);
-                                }
+                                // Append the username to the userDiv
+                                userDiv.appendChild(username);
                             });
                         }).catch((error) => {
                             console.log('Error getting documents: ', error);
                         });
-
-                        // Append the username to the userDiv
-                        userDiv.appendChild(username);
 
                         // Append the title, date, content, and userDiv to the postDiv
                         postDiv.appendChild(title);
