@@ -129,21 +129,6 @@ b {
     z-index: -1;
 }
 
-.main-section {
-    padding: 50px 0;
-    text-align: center;
-}
-
-main {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 80vh;
-    /* Adjust as needed */
-    border-top: 2px #ff6600 solid;
-}
 
 /* Animation for the title */
 @keyframes fade-in {
@@ -184,15 +169,37 @@ main {
     background-color: #e55e00;
 }
 
-/* About section styles */ 
+/* About section styles */
 .about {
-    background-color: #500e0e;
+    background-image: url('../img/Banksia.jpg');
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    border-style: ridge;
+}
+
+.about h1{
+    text-align: center;
+    font-size: 2em;
+    justify-content: center;
+    align-items: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.about h2{
+    text-align: center;
+    font-size: 2em;
+    justify-content: center;
+    align-items: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 
 .about-content {
     max-width: 600px;
     margin: 0 auto;
+    justify-content: center;
+    align-items: center;
 }
 
 .about-content img {
@@ -203,6 +210,39 @@ main {
     height: 400px;
     width: 300px;
 }
+
+.img-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.about-content p {
+    font-size: 1.5em;
+    border-style: groove;
+    border-color: #ff6600;
+    border-radius: 8px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.about-content h2 {
+    font-size: 1.5em;
+    border-style: groove;
+    border-color: #ff6600;
+    border-radius: 8px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 
 /* Top Navigation Bar styles */
 .top-nav {
