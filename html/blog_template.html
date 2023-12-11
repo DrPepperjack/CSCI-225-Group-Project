@@ -27,73 +27,6 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
-
-        const userId = '#'; // Replace with your actual user ID
-
-        // User document reference
-        const userRef = db.collection('UserData').doc(userId);
-
-        // User Information
-        // Fetch user data from Firestore
-        userRef.get().then((doc) => {
-            if (doc.exists) {
-                // Get user data from the document
-                const userData = doc.data();
-
-                // Update HTML elements with user data
-                const profilePic = document.querySelector('.profile-pic-container img');
-                profilePic.src = userData.profilePicURL; // Update profile picture
-
-                const blogUsername = document.querySelector('.blog_username');
-                blogUsername.textContent = userData.username; // Update username
-
-                const blogBio = document.querySelector('.blog_bio');
-                blogBio.textContent = userData.bio; // Update bio
-            } else {
-                console.log('No such document!');
-            }
-        }).catch((error) => {
-            console.log('Error getting document:', error);
-        });
-
-        // Create Post
-        const createPostForm = document.getElementById('create-post-form');
-
-        createPostForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            // Get input values
-            const postTitle = document.getElementById('post-title').value;
-            const postContent = document.getElementById('post-content').value;
-
-            // Add post to Firestore
-            db.collection('posts').add({
-                title: postTitle,
-                content: postContent,
-                // Add other post details as needed
-                // You might want to include author ID, timestamp, etc.
-            })
-                .then((docRef) => {
-                    console.log('Post added with ID: ', docRef.id);
-                    // Clear form after successful submission
-                    createPostForm.reset();
-                })
-                .catch((error) => {
-                    console.error('Error adding post: ', error);
-                });
-        });
-
-        // Sign Out
-        const signOutButton = document.getElementById('signout');
-
-        signOutButton.addEventListener('click', () => {
-            firebase.auth().signOut().then(() => {
-                console.log('Signed out successfully.');
-                // Redirect or update UI as needed after sign out
-            }).catch((error) => {
-                console.error('Sign out error: ', error);
-            });
-        });
     </script>
 
     <!-- Top Navigation Bar -->
@@ -131,7 +64,7 @@
                 <div class="blog_bio">
                     <div class="create-post">
                         <h2><a href="../createpost.html">Create Post</a></h2>
-                </div>
+                    </div>
         </menu>
 
 
@@ -166,61 +99,63 @@
                 </div>
             </div>
         </main>
-        <script src="js/auth-listener.js"></script>
-        <!-- Footer -->
         <script>
-            // ...
-            
             // Fetch user data from Firestore
-            userRef.get().then((doc) => {
-                if (doc.exists) {
-                    // Get user data from the document
-                    const userData = doc.data();
-            
-                    // Update HTML elements with user data
-                    const profilePic = document.querySelector('.profile-pic-container img');
-                    profilePic.src = userData.profilePicture; // Update profile picture
-            
-                    const blogUsername = document.querySelector('.blog_username');
-                    blogUsername.textContent = userData.username; // Update username
-            
-                    const blogBio = document.querySelector('.blog_bio');
-                    blogBio.textContent = userData.bio; // Update bio
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    // User is signed in.
+                    db.collection("UserData").doc(user.uid).get().then((doc) => {
+                        if (doc.exists) {
+                            // Get user data from the document
+                            const userData = doc.data();
+        
+                            // Update HTML elements with user data
+                            const profilePic = document.querySelector('.profile-pic-container img');
+                            profilePic.src = userData.profilePicture; // Update profile picture
+        
+                            const blogUsername = document.querySelector('.blog_username');
+                            blogUsername.textContent = userData.userName; // Update username
+        
+                            const blogBio = document.querySelector('.blog_bio');
+                            blogBio.textContent = userData.blogBio; // Update bio
+                        } else {
+                            console.log('No such document!');
+                        }
+                    }).catch((error) => {
+                        console.log('Error getting document:', error);
+                    });
+        
+                    // Fetch blogs created by the user from Firestore
+                    db.collection('blogPosts').where('userName', '==', user.uid).get().then((querySnapshot) => {
+                        querySnapshot.forEach((doc) => {
+                            // Get blog data from the document
+                            const blogData = doc.data();
+        
+                            // Create HTML elements for the blog title, date, and content
+                            var title = document.createElement('h3');
+                            title.textContent = blogData.title;
+        
+                            var date = document.createElement('p');
+                            date.textContent = "Date Created: " + blogData.date;
+        
+                            var content = document.createElement('p');
+                            content.textContent = blogData.content;
+        
+                            // Append the title, date, and content to the blog container
+                            var blogContainer = document.querySelector('.blog-container');
+                            blogContainer.appendChild(title);
+                            blogContainer.appendChild(date);
+                            blogContainer.appendChild(content);
+                        });
+                    }).catch((error) => {
+                        console.log('Error getting documents:', error);
+                    });
                 } else {
-                    console.log('No such document!');
+                    // No user is signed in.
+                    console.log('No user is signed in');
                 }
-            }).catch((error) => {
-                console.log('Error getting document:', error);
             });
-            
-            // Fetch blogs created by the user from Firestore
-            db.collection('Blogs').where('blogUsername', '==', userId).get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    // Get blog data from the document
-                    const blogData = doc.data();
-            
-                    // Create HTML elements for the blog title, date, and content
-                    var title = document.createElement('h3');
-                    title.textContent = blogData.title;
-            
-                    var date = document.createElement('p');
-                    date.textContent = "Date Created: " + blogData.date;
-            
-                    var content = document.createElement('p');
-                    content.textContent = blogData.content;
-            
-                    // Append the title, date, and content to the blog container
-                    var blogContainer = document.querySelector('.blog-container');
-                    blogContainer.appendChild(title);
-                    blogContainer.appendChild(date);
-                    blogContainer.appendChild(content);
-                });
-            }).catch((error) => {
-                console.log('Error getting documents:', error);
-            });
-            
-            // ...
-            </script>
+        </script>
         <footer>
             <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
         </footer>
