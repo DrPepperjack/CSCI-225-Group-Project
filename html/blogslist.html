@@ -96,13 +96,13 @@
             title.textContent = doc.data().title;
       
             var date = document.createElement('p');
-            date.textContent = doc.data().date;
+            date.textContent = "Date Created: " + doc.data().date;
       
             var content = document.createElement('p');
             content.textContent = doc.data().content;
       
             var username = document.createElement('p');
-            username.textContent = doc.data().blogUsername;
+            username.textContent = "Created By: " + doc.data().blogUsername;
       
             // Append the title, date, content, and username to the postDiv
             postDiv.appendChild(title);
