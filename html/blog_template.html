@@ -126,17 +126,12 @@
                 </div>
 
                 <h1 class="blog_username">
-                    John Doe's Blog
                 </h1>
 
                 <div class="blog_bio">
-                    John Doe is the first user(not really) for Banksia Pages. He is a very cool guy and likes to write,
-                    he is the volunteer for the first blog post and framework for color schemes you'll see in our
-                    themes!
-
                     <div class="create-post">
                         <h2><a href="../createpost.html">Create Post</a></h2>
-                    </div>
+                </div>
         </menu>
 
 
@@ -144,24 +139,16 @@
         <main class="blog-list">
             <div class="blog-post-header">
                 <div class="blog-post-title">
-                    <h1>"Unveiling the Myth: Exploring the Secrets of Timelessness"</h1>
+                    <h1></h1>
                 </div>
                 <div class="blog-post-author">
-                    <p>Author: John Doe</p>
+                    <p></p>
                 </div>
                 <!-- Dynamic date from the database -->
                 <div class="blog-post-date">
-                    <p>Date: January 1, 2023</p>
+                    <p></p>
                 </div>
                 <div class="blog-post-body">
-                    <!-- Dynamic content will be inserted here -->
-                    In the labyrinth of existence, time remains an enigmatic force, its secrets shrouded in the veils of
-                    eternity. "Unveiling the Myth: Exploring the Secrets of Timelessness" embarks on a voyage through
-                    the ethereal realms of time, deciphering its elusive nature. From the cosmic dance of seconds to the
-                    timeless whispers of history, this expedition ventures beyond conventional confines. Delving into
-                    the depths of philosophy, science, and human perception, it seeks to unravel the timeless tapestry
-                    that weaves past, present, and future. Join this odyssey as we navigate the unfathomable currents of
-                    time, illuminating the mystique that renders it eternal.
                 </div>
 
                 <div class="blog-comments-section">
@@ -181,6 +168,59 @@
         </main>
         <script src="js/auth-listener.js"></script>
         <!-- Footer -->
+        <script>
+            // ...
+            
+            // Fetch user data from Firestore
+            userRef.get().then((doc) => {
+                if (doc.exists) {
+                    // Get user data from the document
+                    const userData = doc.data();
+            
+                    // Update HTML elements with user data
+                    const profilePic = document.querySelector('.profile-pic-container img');
+                    profilePic.src = userData.profilePicture; // Update profile picture
+            
+                    const blogUsername = document.querySelector('.blog_username');
+                    blogUsername.textContent = userData.username; // Update username
+            
+                    const blogBio = document.querySelector('.blog_bio');
+                    blogBio.textContent = userData.bio; // Update bio
+                } else {
+                    console.log('No such document!');
+                }
+            }).catch((error) => {
+                console.log('Error getting document:', error);
+            });
+            
+            // Fetch blogs created by the user from Firestore
+            db.collection('Blogs').where('blogUsername', '==', userId).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    // Get blog data from the document
+                    const blogData = doc.data();
+            
+                    // Create HTML elements for the blog title, date, and content
+                    var title = document.createElement('h3');
+                    title.textContent = blogData.title;
+            
+                    var date = document.createElement('p');
+                    date.textContent = "Date Created: " + blogData.date;
+            
+                    var content = document.createElement('p');
+                    content.textContent = blogData.content;
+            
+                    // Append the title, date, and content to the blog container
+                    var blogContainer = document.querySelector('.blog-container');
+                    blogContainer.appendChild(title);
+                    blogContainer.appendChild(date);
+                    blogContainer.appendChild(content);
+                });
+            }).catch((error) => {
+                console.log('Error getting documents:', error);
+            });
+            
+            // ...
+            </script>
         <footer>
             <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
         </footer>
