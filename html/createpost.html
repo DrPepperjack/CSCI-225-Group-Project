@@ -40,8 +40,11 @@
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
+    <footer>
+        <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
+    </footer>
     <script>
-        //initialize firebase
+        // Initialize Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyD6KA0ECIAB3scXNUu7mxgjmbmnhjOSEVc",
             authDomain: "banksia-pages-database.firebaseapp.com",
@@ -51,13 +54,48 @@
             appId: "1:239610874789:web:80bcede53d7ef4ba26764c",
             measurementId: "G-JV3QXR7P2H"
         };
-        function submitForm(){
-            //to do: add a delicious saucy incredible script for submitting the post to the db
+        firebase.initializeApp(firebaseConfig);
+
+        const db = firebase.firestore();
+
+        function submitForm(event) {
+            event.preventDefault(); // Prevent the form from refreshing the page
+
+            // Get the input values
+            const postTitle = document.getElementById('post-title').value;
+            const postContent = document.getElementById('post-content').value;
+
+            // Get the current user's username
+            const user = firebase.auth().currentUser;
+            if (!user) {
+                alert('You must be signed in to create a post.');
+                return;
+            }
+            const username = user.displayName; // Replace this with how you're storing usernames
+
+            // Get the current date
+            const date = new Date();
+            const month = date.getMonth() + 1; // Months are 0-indexed
+            const year = date.getFullYear();
+
+            // Create a new document in the "blogPosts" collection
+            db.collection('blogPosts').doc(`${username}-${postTitle}`).set({
+                username: username,
+                title: postTitle,
+                content: postContent,
+                date: `${month}-${year}`
+            })
+                .then(() => {
+                    alert('Post created successfully!');
+                })
+                .catch((error) => {
+                    console.error('Error writing document: ', error);
+                });
         }
+
+        // Attach the submitForm function to the form's submit event
+        document.forms['create-post'].addEventListener('submit', submitForm);
     </script>
-    <footer>
-        <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
-    </footer>
 </body>
 
 </html>
