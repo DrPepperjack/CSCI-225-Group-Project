@@ -16,17 +16,17 @@
   <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
   <script>
     const firebaseConfig = {
-            apiKey: "AIzaSyD6KA0ECIAB3scXNUu7mxgjmbmnhjOSEVc",
-            authDomain: "banksia-pages-database.firebaseapp.com",
-            projectId: "banksia-pages-database",
-            storageBucket: "banksia-pages-database.appspot.com",
-            messagingSenderId: "239610874789",
-            appId: "1:239610874789:web:80bcede53d7ef4ba26764c",
-            measurementId: "G-JV3QXR7P2H"
-        };
+      apiKey: "AIzaSyD6KA0ECIAB3scXNUu7mxgjmbmnhjOSEVc",
+      authDomain: "banksia-pages-database.firebaseapp.com",
+      projectId: "banksia-pages-database",
+      storageBucket: "banksia-pages-database.appspot.com",
+      messagingSenderId: "239610874789",
+      appId: "1:239610874789:web:80bcede53d7ef4ba26764c",
+      measurementId: "G-JV3QXR7P2H"
+    };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
   </script>
   <title>Banksia Pages</title>
 </head>
@@ -132,45 +132,65 @@
   </footer>
 
   <script>
-    // Changing the Sign In button to a Log Out button if the user is signed in
+    // Changing the Sign In button to a Create Blog or Log Out button if the user is signed in
     firebase.auth().onAuthStateChanged(function (user) {
+      var signInButton = document.querySelector('a[href="html/signin.html"]');
       if (user) {
         // User is signed in.
-        // Change the "Sign In" button to a "Log Out" button
-        var signInButton = document.querySelector(
-          'a[href="html/signin.html"]'
-        );
         if (signInButton) {
-          signInButton.textContent = "Log Out";
-          signInButton.href = "#";
+          signInButton.textContent = "Create Blog";
+          signInButton.href = "html/createpost.html";
+          signInButton.removeEventListener("click", signIn);
           signInButton.addEventListener("click", function (e) {
-            e.preventDefault();
-            firebase
-              .auth()
-              .signOut()
-              .then(function () {
-                // Sign-out successful.
-                console.log("User signed out.");
-                window.location.reload(); // Reload the page to update the button text
-              })
-              .catch(function (error) {
-                // An error happened.
-                console.error("Error signing out: ", error);
-              });
+            if (signInButton.textContent === "Log Out") {
+              e.preventDefault();
+              firebase
+                .auth()
+                .signOut()
+                .then(function () {
+                  // Sign-out successful.
+                  console.log("User signed out.");
+                  window.location.reload(); // Reload the page to update the button text
+                })
+                .catch(function (error) {
+                  // An error happened.
+                  console.error("Error signing out: ", error);
+                });
+            }
           });
         }
       } else {
         // No user is signed in.
-        // Ensure the button says "Sign In"
-        var signInButton = document.querySelector(
-          'a[href="html/signin.html"]'
-        );
         if (signInButton) {
           signInButton.textContent = "Sign In";
-          signInButton.href = "html/signin.html";
+          signInButton.href = "#";
+          signInButton.removeEventListener("click", signOut);
+          signInButton.addEventListener("click", signIn);
         }
       }
     });
+  
+    function signIn(e) {
+      e.preventDefault();
+      // Trigger the click event of the #google-login-button element
+      $('#google-login-button').click();
+    }
+  
+    function signOut(e) {
+      e.preventDefault();
+      firebase
+        .auth()
+        .signOut()
+        .then(function () {
+          // Sign-out successful.
+          console.log("User signed out.");
+          window.location.reload(); // Reload the page to update the button text
+        })
+        .catch(function (error) {
+          // An error happened.
+          console.error("Error signing out: ", error);
+        });
+    }
   </script>
   <!-- Google Sign in Button -->
   <script src="js/Login.js"></script>
