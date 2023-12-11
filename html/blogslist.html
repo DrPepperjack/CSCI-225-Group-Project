@@ -100,6 +100,8 @@
           
                 var username = document.createElement('p');
                 username.textContent = "Created By: " + " " + doc.data().blogUsername;
+
+                console.log('Fetching user data for username:', doc.data().blogUsername);
           
                 // Fetch the user data from the UserData collection
                 db.collection("UserData").doc(doc.data().blogUsername).get().then((userDoc) => {
