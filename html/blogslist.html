@@ -74,44 +74,53 @@
                 <h1>Featured Blogs</h1>
     <!-- Script to get blog posts from the database -->
     <div class="featured-blogs-list">
-    <script>
-        // Get a reference to the Firestore database
-        var db = firebase.firestore();
-
-        // Get a reference to the container element
-        var container = document.querySelector('.featured-blogs');
-
-        // Get all documents from the "blogPosts" collection
-        db.collection("blogPosts").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
+        <script>
+            // Get a reference to the Firestore database
+            var db = firebase.firestore();
+          
+            // Get a reference to the container element
+            var container = document.querySelector('.featured-blogs');
+          
+            // Get all documents from the "blogPosts" collection
+            db.collection("blogPosts").get().then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
                 // Create a new div element for the blog post
                 var postDiv = document.createElement('div');
                 postDiv.className = 'blog-post';
-
+          
                 // Create HTML elements for the blog title, date, content, and username
                 var title = document.createElement('h3');
                 title.textContent = doc.data().title;
-
+          
                 var date = document.createElement('p');
                 date.textContent = "Date Created: " + doc.data().date;
-
+          
                 var content = document.createElement('p');
                 content.textContent = doc.data().content;
-
+          
                 var username = document.createElement('p');
-                username.textContent = "Created By: " + doc.data().blogUsername;
-
+                username.textContent = "Created By: " + " " + doc.data().blogUsername;
+          
+                // Create an img element for the user's profile picture
+                var profilePicture = document.createElement('img');
+                profilePicture.src = doc.data().profilePicture;
+                profilePicture.style.width = '50px'; // Set the width of the profile picture
+                profilePicture.style.height = '50px'; // Set the height of the profile picture
+          
+                // Prepend the profile picture to the username
+                username.prepend(profilePicture);
+          
                 // Append the title, date, content, and username to the postDiv
                 postDiv.appendChild(title);
                 postDiv.appendChild(date);
                 postDiv.appendChild(content);
                 postDiv.appendChild(username);
-
+          
                 // Append the postDiv to the container
                 container.appendChild(postDiv);
+              });
             });
-        });
-    </script>
+          </script>
     </div>
 </main>
 
