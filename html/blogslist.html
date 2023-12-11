@@ -5,6 +5,24 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../css/blogs-lists.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyD6KA0ECIAB3scXNUu7mxgjmbmnhjOSEVc",
+            authDomain: "banksia-pages-database.firebaseapp.com",
+            projectId: "banksia-pages-database",
+            storageBucket: "banksia-pages-database.appspot.com",
+            messagingSenderId: "239610874789",
+            appId: "1:239610874789:web:80bcede53d7ef4ba26764c",
+            measurementId: "G-JV3QXR7P2H"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
     <title>Banksia Pages</title>
 </head>
 
