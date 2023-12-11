@@ -137,7 +137,6 @@ b {
 
 /* Main Section styles */
 main {
-    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -160,12 +159,19 @@ main {
     float: left;
     text-align: center;
     background-color: coral;
-    width: 25%;
+    width: 20%;
+}
+.panel-left {
+    grid-column: 1;
+    grid-row: span 12;
+    float: left;
+    text-align: center;
+    background-color: coral;
+    width: 90%;
 }
 
 /* Blog List Section styles */
 .blog-list {
-    float: center;
     text-align: center;
     width: 75%; /* Adjusted width */
     height: 75%; /* Adjusted height */
@@ -173,11 +179,11 @@ main {
     grid-column: 2 / 3;
     grid-row: 1 / 3;
     gap: 20px;
-    overflow-y: auto; /* Add scroll if content exceeds */
     padding: 20px;
     border: 1px solid #ccc; /* Example border */
     border-radius: 5px; /* Example border radius */
 }
+
 
 /* Adjusting the width of each individual blog post */
 .blog-post {
@@ -185,6 +191,59 @@ main {
     padding: 15px; /* Padding for each post */
     border-bottom: 1px solid #eee; /* Example border between posts */
 }
+
+/* Container for each blog post */
+.blog-post-container {
+    width: 100%;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Blog post title */
+.blog-post-container h1 {
+    margin-bottom: 5px;
+}
+
+/* Blog post author */
+.blog-post-container .blog-post-author {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+/* Blog post date */
+.blog-post-container .blog-post-date {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Blog post body */
+/* FILEPATH: /c:/Users/dandr/CSCI225/CSCI-225-Group-Project/css/blog_template.css/blog-temp.css */
+
+/* Styles for the body content */
+
+/* Comments section */
+.blog-post-container .blog-comments-section {
+    /* Styles for the comments section */
+}
+
+/* Styles for buttons */
+.blog-post-container .view-full-posts button {
+    /* Styles for the "View Post" button */
+}
+
+/* View Full Posts link */
+.view-full-posts {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.view-full-posts a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #ff6600;
+}
+    /* Styles for the body content */
 
 /* View Full Posts link */
 .view-full-posts {
