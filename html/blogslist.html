@@ -74,6 +74,45 @@
         
     </main>
 
+    <script>
+        // Get a reference to the Firestore database
+        var db = firebase.firestore();
+      
+        // Get a reference to the container element
+        var container = document.querySelector('main');
+      
+        // Get all documents from the "blogPosts" collection
+        db.collection("blogPosts").get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            // Create a new div element for the blog post
+            var postDiv = document.createElement('div');
+            postDiv.className = 'blog-post';
+      
+            // Create HTML elements for the blog title, date, content, and username
+            var title = document.createElement('h3');
+            title.textContent = doc.data().title;
+      
+            var date = document.createElement('p');
+            date.textContent = doc.data().date;
+      
+            var content = document.createElement('p');
+            content.textContent = doc.data().content;
+      
+            var username = document.createElement('p');
+            username.textContent = doc.data().blogUsername;
+      
+            // Append the title, date, content, and username to the postDiv
+            postDiv.appendChild(title);
+            postDiv.appendChild(date);
+            postDiv.appendChild(content);
+            postDiv.appendChild(username);
+      
+            // Append the postDiv to the container
+            container.appendChild(postDiv);
+          });
+        });
+      </script>
+
 
     <!-- Footer -->
     <footer>
