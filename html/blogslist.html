@@ -106,6 +106,8 @@
                 profilePicture.src = doc.data().profilePicture;
                 profilePicture.style.width = '50px'; // Set the width of the profile picture
                 profilePicture.style.height = '50px'; // Set the height of the profile picture
+
+                console.log('Profile picture URL:', profilePicture.src);
           
                 // Prepend the profile picture to the username
                 username.prepend(profilePicture);
