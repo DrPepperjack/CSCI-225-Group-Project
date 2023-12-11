@@ -216,21 +216,6 @@ main {
     color: #555;
 }
 
-/* Blog post body */
-/* FILEPATH: /c:/Users/dandr/CSCI225/CSCI-225-Group-Project/css/blog_template.css/blog-temp.css */
-
-/* Styles for the body content */
-
-/* Comments section */
-.blog-post-container .blog-comments-section {
-    /* Styles for the comments section */
-}
-
-/* Styles for buttons */
-.blog-post-container .view-full-posts button {
-    /* Styles for the "View Post" button */
-}
-
 /* View Full Posts link */
 .view-full-posts {
     display: block;
