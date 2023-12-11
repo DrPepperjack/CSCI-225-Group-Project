@@ -5,6 +5,24 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../css/blogs-lists.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyD6KA0ECIAB3scXNUu7mxgjmbmnhjOSEVc",
+            authDomain: "banksia-pages-database.firebaseapp.com",
+            projectId: "banksia-pages-database",
+            storageBucket: "banksia-pages-database.appspot.com",
+            messagingSenderId: "239610874789",
+            appId: "1:239610874789:web:80bcede53d7ef4ba26764c",
+            measurementId: "G-JV3QXR7P2H"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
     <title>Banksia Pages</title>
 </head>
 
@@ -73,6 +91,45 @@
 
         
     </main>
+
+    <script>
+        // Get a reference to the Firestore database
+        var db = firebase.firestore();
+      
+        // Get a reference to the container element
+        var container = document.querySelector('main');
+      
+        // Get all documents from the "blogPosts" collection
+        db.collection("blogPosts").get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            // Create a new div element for the blog post
+            var postDiv = document.createElement('div');
+            postDiv.className = 'blog-post';
+      
+            // Create HTML elements for the blog title, date, content, and username
+            var title = document.createElement('h3');
+            title.textContent = doc.data().title;
+      
+            var date = document.createElement('p');
+            date.textContent = doc.data().date;
+      
+            var content = document.createElement('p');
+            content.textContent = doc.data().content;
+      
+            var username = document.createElement('p');
+            username.textContent = doc.data().blogUsername;
+      
+            // Append the title, date, content, and username to the postDiv
+            postDiv.appendChild(title);
+            postDiv.appendChild(date);
+            postDiv.appendChild(content);
+            postDiv.appendChild(username);
+      
+            // Append the postDiv to the container
+            container.appendChild(postDiv);
+          });
+        });
+      </script>
 
 
     <!-- Footer -->
