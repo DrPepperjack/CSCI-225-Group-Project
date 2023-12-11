@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
     <!-- Add Firebase SDK for Banksia Pages Database -->
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
@@ -108,7 +107,7 @@
         </div>
         <div class="header-links">
             <ul>
-                <li><a href="BanksiaPages.html">Home</a></li>
+                <li><a href="../index.html">Home</a></li>
                 <li><a href="blogslist.html">Blogs</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
@@ -131,10 +130,11 @@
                 </h1>
 
                 <div class="blog_bio">
-                    John Doe is the first user(not really) for Banksia Pages. He is a very cool guy and likes to write
-                </div>
+                    John Doe is the first user(not really) for Banksia Pages. He is a very cool guy and likes to write,
+                    he is the volunteer for the first blog post and framework for color schemes you'll see in our
+                    themes!
 
-                <!-- Commented out until reformat of add post- D'Andre L.
+                    <!-- Commented out until reformat of add post- D'Andre L.
             <aside class="sidebar">
                 <div class="create-post">
                     <h2>Create Post</h2>
@@ -148,58 +148,41 @@
                 </div>
             </aside>
         -->
-            </div>
+                </div>
         </menu>
 
 
         <!-- Blog Post Template -->
         <main class="blog-list">
-            <div class="container">
-                <div class="blog-post-header">
-                    <div class="blog-post-title">
-                        <h1>"Unveiling the Myth: Exploring the Secrets of Timelessness"</h1>
-                    </div>
-                    <div class="blog-post-author">
-                        <p>Author: John Doe</p>
-                    </div>
-                    <!-- Add date to database so it pulls date instead of pre-selected date in code-->
-                    <div class="blog-post-date">
-                        <p>Date: January 1, 2023</p>
-                    </div>
-                    <div class="blog-post-body">
-                        <!-- Blog post body content -->
-                    </div>
+            <div class="blog-post-header">
+                <div class="blog-post-title">
+                    <h1>"Unveiling the Myth: Exploring the Secrets of Timelessness"</h1>
+                </div>
+                <div class="blog-post-author">
+                    <p>Author: John Doe</p>
+                </div>
+                <!-- Dynamic date from the database -->
+                <div class="blog-post-date">
+                    <p>Date: January 1, 2023</p>
+                </div>
+                <div class="blog-post-body">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
 
-                    <div class="blog-comments-section">
-                        <h2>Comments</h2>
-                        <!-- Display existing comments -->
-                        <div class="existing-comments">
-                            <!-- Each comment could be structured within its own div -->
-                            <div class="comment">
-                                <p>User A: This is a great post!</p>
-                            </div>
-                            <div class="comment">
-                                <p>User B: I found this very helpful. Thanks!</p>
-                            </div>
-                            <div class="view-comments-button">
-                                <button type="button">View All Comments</button>
-                            </div>
-                            <div class="view-full-posts">
-                                <button type="button" id="load-more-button">View Post</button>
-                            </div>
-
-                            <!-- Form for users to submit new comments
-                            <form id="comment-form">
-                                <label for="user-name">Name:</label>
-                                <input type="text" id="user-name" name="user-name" required><br><br>
-                                <label for="user-comment">Comment:</label><br>
-                                <textarea id="user-comment" name="user-comment" rows="4" cols="50"
-                                    required></textarea><br><br>
-                                <button type="submit">Submit</button>
-                            </form>
-                            -->
-                        </div>
+                <div class="blog-comments-section">
+                    <h2>Blog Comments</h2>
+                    <!-- Display existing comments -->
+                    <div class="existing-comments">
+                        <!-- Dynamic comments will be displayed here -->
                     </div>
+                    <div class="view-comments-button">
+                        <button type="button">View All Comments</button>
+                    </div>
+                    <div class="view-full-posts">
+                        <button type="button" class="load-more-button">View Post</button>
+                    </div>
+                </div>
+            </div>
         </main>
         <script src="js/auth-listener.js"></script>
 </body>
