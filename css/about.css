@@ -2,6 +2,10 @@
 @import url("https://fonts.googleapis.com/css?family=Montagu+Slab");
 @import url("https://fonts.googleapis.com/css?family=DM+Sans");
 
+html{
+    background-image: url('../img/Banksia.jpg');
+    background-size: cover;
+}
 
 body {
     margin: 0;
@@ -142,46 +146,54 @@ b {
     }
 }
 
-/*Main blog styles*/
-.main blog-info{
-    padding: 50px 0;
-    margin-top: 50px;
-}
-/* Featured blogs style*/
-.main featured-blogs {
-    background-image: url('../img/blogs_lists_img/Stock-Photo-4.jpg');
-    padding: 50px 0;
-    margin-top: 50px;
-}
+/* About Section styles */
 
-/* Subscribe section styles */
-.subscribe {
-    background-color: #f8f8f8;
-}
-
-.subscribe-content {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.btn-subscribe {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #ff6600;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.btn-subscribe:hover {
-    background-color: #e55e00;
-}
-
-.img-container{
+.about-header h1{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.about-header h2{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.about-content {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    font-family: 'DM Sans' 'sans-serif';
+}
+
+.about-text{
+    text-align: center;
+    font-size: 1.5em;
+    padding: 10px;
+    background-color: blur(10px);
+    margin: 20px;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-container img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 400px;
+    border-radius: 10px;
 }
 
 /* Top Navigation Bar styles */
@@ -210,8 +222,12 @@ b {
 .footer {
     text-align: center;
     padding: 20px 0;
-    background-color: #1a0000;
+    background-color: #ff6600;
     color: #fff;
     bottom: 0;
     width: 100%;
+}
+
+.footer p{
+    background-color:#ff6600;
 }
