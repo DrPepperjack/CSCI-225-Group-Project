@@ -63,7 +63,7 @@
 
                 <div class="blog_bio">
                     <div class="create-post">
-                        <h2><a href="createpost.html">Create Post</a></h2>
+                        <h2><a href="../createpost.html">Create Post</a></h2>
                     </div>
         </menu>
 
@@ -107,6 +107,23 @@
                 if (user) {
                     // User is signed in.
                     var userName = user.displayName; // Get the user's display name
+
+                    // Fetch user data from Firestore
+                    db.collection("UserData").doc(userName).get().then((doc) => {
+                        if (doc.exists) {
+                            // Get user data from the document
+                            var userData = doc.data();
+
+                            // Update HTML elements with user data
+                            document.querySelector('.profile-pic-container img').src = userData.profilePicture;
+                            document.querySelector('.blog_username').textContent = userData.blogUserName;
+                            document.querySelector('.blog_bio').textContent = userData.blogBio;
+                        } else {
+                            console.log('No such document!');
+                        }
+                    }).catch((error) => {
+                        console.log('Error getting document:', error);
+                    });
 
                     // Fetch blogs created by the user from Firestore
                     db.collection('blogPosts').where('blogUserName', '==', userName).get().then((querySnapshot) => {
