@@ -135,14 +135,22 @@ b {
 }
 
 main {
+    background-image: url('/img/blogs_lists_img/Stock-Photo-5.jpg');
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80vh;
     /* Adjust as needed */
     border-top: 2px #ff6600 solid;
+}
+
+.blog-info {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0em 5em;
 }
 
 /* Animation for the title */
@@ -156,23 +164,6 @@ main {
         opacity: 1;
         transform: translateX(0);
     }
-}
-
-
-
-/* Subscribe section styles */
-.subscribe {
-    background-color: #f8f8f8;
-}
-
-.subscribe-content {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.about-content {
-    max-width: 600px;
-    margin: 0 auto;
 }
 
 .feature{
