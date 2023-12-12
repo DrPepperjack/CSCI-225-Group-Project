@@ -63,7 +63,7 @@
 
                 <div class="blog_bio">
                     <div class="create-post">
-                        <h2><a href="../createpost.html">Create Post</a></h2>
+                        <h2><a href="createpost.html">Create Post</a></h2>
                     </div>
         </menu>
 
@@ -131,25 +131,41 @@
                             // Get blog data from the document
                             var blogData = doc.data();
 
-                            // Create HTML elements for the blog title, date, and content
-                            var title = document.createElement('h1');
-                            title.textContent = blogData.blogTitle;
+                            // Create a new div element for the blog post
+                            var postDiv = document.createElement('div');
+                            postDiv.className = 'blog-post';
 
-                            var author = document.createElement('p');
-                            author.textContent = blogData.blogUserName;
+                            // Create HTML elements for the blog title, date, content, and username
+                            var title = document.createElement('h3');
+                            title.textContent = blogData.title;
 
                             var date = document.createElement('p');
                             date.textContent = "Date Created: " + blogData.date;
 
-                            var content = document.createElement('div');
+                            var content = document.createElement('p');
                             content.textContent = blogData.content;
 
-                            // Append the title, author, date, and content to the blog post header
-                            var blogPostHeader = document.querySelector('.blog-post-header');
-                            blogPostHeader.appendChild(title);
-                            blogPostHeader.appendChild(author);
-                            blogPostHeader.appendChild(date);
-                            blogPostHeader.appendChild(content);
+                            var userDiv = document.createElement('div');
+                            userDiv.style.display = 'flex';
+                            userDiv.style.alignItems = 'center';
+
+                            var username = document.createElement('p');
+                            username.textContent = "Created By: " + " " + blogData.blogUserName;
+
+                            console.log('Fetching user data for username:', blogData.blogUserName);
+
+                            // Append the username to the userDiv
+                            userDiv.appendChild(username);
+
+                            // Append the title, date, content, and userDiv to the postDiv
+                            postDiv.appendChild(title);
+                            postDiv.appendChild(date);
+                            postDiv.appendChild(content);
+                            postDiv.appendChild(userDiv);
+
+                            // Append the postDiv to the blog post body
+                            var blogPostBody = document.querySelector('.blog-post-body');
+                            blogPostBody.appendChild(postDiv);
                         });
                     }).catch((error) => {
                         console.log('Error getting documents:', error);
