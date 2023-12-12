@@ -191,8 +191,8 @@ b {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 400px;
-    width: 400px;
+    height: 50%;
+    width: 50%;
     border-radius: 10px;
 }
 
