@@ -36,7 +36,7 @@
   <nav class="top-nav" id="navbar">
     <a class="nav-title" href="#">Banksia<b>Pages</b></a>
     <div class="header-buttons">
-      <a href="html/signin.html">sign in</a>
+      <a href="html/blog_template.html">Profile</a>
 
     </div>
     <div class="header-links">
@@ -44,7 +44,6 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="html/blogslist.html">Blogs</a></li>
         <li><a href="html/about.html">About</a></li>
-        <li><a href="html/signout.html">Sign Out</a></li>
       </ul>
     </div>
   </nav>
@@ -62,75 +61,12 @@
       </button>
     </div>
   </header>
-        <!-- Footer -->
-        <footer>
-          <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
-        </footer>
-
-  <script>
-    // Changing the Sign In button to a Create Blog or Log Out button if the user is signed in
-    firebase.auth().onAuthStateChanged(function (user) {
-      var signInButton = document.querySelector('a[href="html/signin.html"]');
-      if (user) {
-        // User is signed in.
-        if (signInButton) {
-          signInButton.textContent = "Create Blog";
-          signInButton.href = "html/createpost.html";
-          signInButton.removeEventListener("click", signIn);
-          signInButton.addEventListener("click", function (e) {
-            if (signInButton.textContent === "Log Out") {
-              e.preventDefault();
-              firebase
-                .auth()
-                .signOut()
-                .then(function () {
-                  // Sign-out successful.
-                  console.log("User signed out.");
-                  window.location.reload(); // Reload the page to update the button text
-                })
-                .catch(function (error) {
-                  // An error happened.
-                  console.error("Error signing out: ", error);
-                });
-            }
-          });
-        }
-      } else {
-        // No user is signed in.
-        if (signInButton) {
-          signInButton.textContent = "Sign In";
-          signInButton.href = "#";
-          signInButton.removeEventListener("click", signOut);
-          signInButton.addEventListener("click", signIn);
-        }
-      }
-    });
-  
-    function signIn(e) {
-      e.preventDefault();
-      // Trigger the click event of the #google-login-button element
-      $('#google-login-button').click();
-    }
-  
-    function signOut(e) {
-      e.preventDefault();
-      firebase
-        .auth()
-        .signOut()
-        .then(function () {
-          // Sign-out successful.
-          console.log("User signed out.");
-          window.location.reload(); // Reload the page to update the button text
-        })
-        .catch(function (error) {
-          // An error happened.
-          console.error("Error signing out: ", error);
-        });
-    }
-  </script>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
+  </footer>
   <!-- Google Sign in Button -->
   <script src="js/Login.js"></script>
-  <script src="js/auth-listener.js"></script>
 </body>
 
 </html>
