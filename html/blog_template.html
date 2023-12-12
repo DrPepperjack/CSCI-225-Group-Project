@@ -55,7 +55,7 @@
                 <!-- Link user info to database so it pulls user image instead of pre-selected image in code-->
 
                 <div class="profile-pic-container">
-                    <img src="../img/profile_img/BanksiaAvis/BanksiaAvi6.png" alt="Profile Picture">
+                    <img src="#" alt="Profile Picture">
                 </div>
 
                 <h1 class="blog_username">
@@ -99,25 +99,25 @@
                 </div>
             </div>
         </main>
+        <footer>
+            <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
+        </footer>
         <script>
-            // Fetch user data from Firestore
             firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
                     // User is signed in.
-                    db.collection("UserData").doc(user.uid).get().then((doc) => {
+                    var userName = user.displayName; // Get the user's display name
+        
+                    // Fetch user data from Firestore
+                    db.collection("UserData").doc(userName).get().then((doc) => {
                         if (doc.exists) {
                             // Get user data from the document
-                            const userData = doc.data();
+                            var userData = doc.data();
         
                             // Update HTML elements with user data
-                            const profilePic = document.querySelector('.profile-pic-container img');
-                            profilePic.src = userData.profilePicture; // Update profile picture
-        
-                            const blogUsername = document.querySelector('.blog_username');
-                            blogUsername.textContent = userData.userName; // Update username
-        
-                            const blogBio = document.querySelector('.blog_bio');
-                            blogBio.textContent = userData.blogBio; // Update bio
+                            document.querySelector('.profile-pic-container img').src = userData.profilePicture;
+                            document.querySelector('.blog_username').textContent = userData.blogUserName;
+                            document.querySelector('.blog_bio').textContent = userData.blogBio;
                         } else {
                             console.log('No such document!');
                         }
@@ -126,26 +126,30 @@
                     });
         
                     // Fetch blogs created by the user from Firestore
-                    db.collection('blogPosts').where('userName', '==', user.uid).get().then((querySnapshot) => {
+                    db.collection('blogPosts').where('blogUserName', '==', userName).get().then((querySnapshot) => {
                         querySnapshot.forEach((doc) => {
                             // Get blog data from the document
-                            const blogData = doc.data();
+                            var blogData = doc.data();
         
                             // Create HTML elements for the blog title, date, and content
-                            var title = document.createElement('h3');
-                            title.textContent = blogData.title;
+                            var title = document.createElement('h1');
+                            title.textContent = blogData.blogTitle;
+        
+                            var author = document.createElement('p');
+                            author.textContent = blogData.blogUserName;
         
                             var date = document.createElement('p');
                             date.textContent = "Date Created: " + blogData.date;
         
-                            var content = document.createElement('p');
+                            var content = document.createElement('div');
                             content.textContent = blogData.content;
         
-                            // Append the title, date, and content to the blog container
-                            var blogContainer = document.querySelector('.blog-container');
-                            blogContainer.appendChild(title);
-                            blogContainer.appendChild(date);
-                            blogContainer.appendChild(content);
+                            // Append the title, author, date, and content to the blog post header
+                            var blogPostHeader = document.querySelector('.blog-post-header');
+                            blogPostHeader.appendChild(title);
+                            blogPostHeader.appendChild(author);
+                            blogPostHeader.appendChild(date);
+                            blogPostHeader.appendChild(content);
                         });
                     }).catch((error) => {
                         console.log('Error getting documents:', error);
@@ -156,10 +160,6 @@
                 }
             });
         </script>
-        <footer>
-            <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
-        </footer>
-
 </body>
 
 </html>
