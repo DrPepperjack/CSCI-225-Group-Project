@@ -105,13 +105,13 @@
                         });
             
                         // Fetch blogs created by the user from Firestore
-                        db.collection('blogPosts').where('blogUserName', '==', userData.blogUserName).get().then((querySnapshot) => {
+                        db.collection('blogPosts').where('blogUserName', '==', UserData.blogUserName).get().then((querySnapshot) => {
                             querySnapshot.forEach((doc) => {
                                 // Get blog data from the document
                                 var blogData = doc.data();
             
                                 // Check if the blogUserName in the blog post matches the user's display name
-                                if (blogData.blogUserName === userData.blogUserName) {
+                                if (blogData.blogUserName === UserData.blogUserName) {
                                     // Create a new div element for the blog post
                                     var postDiv = document.createElement('div');
                                     postDiv.className = 'blog-post';
@@ -149,7 +149,7 @@
                                     blogPostBody.appendChild(postDiv);
                                 }
                                 else {
-                                    console.log('No blog posts found for user:', userData.blogUserName);
+                                    console.log('No blog posts found for user:', UserData.blogUserName);
                                 }
                             });
                         }).catch((error) => {
