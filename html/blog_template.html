@@ -34,7 +34,18 @@
         <a class="nav-title" href="#">Banksia<b>Pages</b></a>
         <div class="header-buttons">
             <!-- When user is signed-in add sign out function-->
-            <a href="#">Log Out</a>
+            <a href="#" id="logoutButton">Log Out</a>
+            <script>
+                document.getElementById('logoutButton').addEventListener('click', function () {
+                    firebase.auth().signOut().then(() => {
+                        // Sign-out successful.
+                        console.log('User signed out');
+                    }).catch((error) => {
+                        // An error happened.
+                        console.log('Error signing out:', error);
+                    });
+                });
+            </script>
             <!-- Sign out will replace sign in when user is logged in commented out currently
             <a href="#">Sign Out</a> -->
         </div>
@@ -72,16 +83,17 @@
         <main class="blog-list">
             <div class="blog-post-header">
                 <div class="blog-post-title">
-                    <h1></h1>
+                    <h1>Title</h1>
                 </div>
                 <div class="blog-post-author">
-                    <p></p>
+                    <p>Author</p>
                 </div>
                 <!-- Dynamic date from the database -->
                 <div class="blog-post-date">
-                    <p></p>
+                    <p>Date</p>
                 </div>
                 <div class="blog-post-body">
+                    <p>Body</p>
                 </div>
 
                 <div class="blog-comments-section">
