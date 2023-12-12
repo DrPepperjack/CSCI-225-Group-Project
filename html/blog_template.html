@@ -82,7 +82,7 @@
         <!-- Blog Post Template -->
         <main class="blog-list">
             <script>
-                firebase.auth().onAuthStateChanged(function (user) {
+                firebase.auth().onAuthStateChanged(function(user) {
                     if (user) {
                         // User is signed in.
                         var userName = user.displayName; // Get the user's display name
@@ -99,7 +99,7 @@
                                 document.querySelector('.blog_bio').textContent = userData.blogBio;
             
                                 // Fetch blogs created by the user from Firestore
-                                db.collection('blogPosts').where('blogUserName', '==', userData.blogUserName).get().then((querySnapshot) => {
+                                db.collection('blogPosts').where('blogUsername', '==', userData.blogUserName).get().then((querySnapshot) => {
                                     console.log('Fetched blog posts:', querySnapshot.docs); // Log the fetched blog posts
             
                                     querySnapshot.forEach((doc) => {
@@ -108,8 +108,8 @@
             
                                         console.log('Processing blog post:', blogData); // Log the blog data that's being processed
             
-                                        // Check if the blogUserName in the blog post matches the user's display name
-                                        if (blogData.blogUserName === userData.blogUserName) {
+                                        // Check if the blogUsername in the blog post matches the user's blogUserName
+                                        if (blogData.blogUsername === userData.blogUserName) {
                                             // Create a new div element for the blog post
                                             var postDiv = document.createElement('div');
                                             postDiv.className = 'blog-post';
