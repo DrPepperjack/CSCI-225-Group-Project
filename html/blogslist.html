@@ -119,6 +119,8 @@
                         // Append the postDiv to the container
                         container.appendChild(postDiv);
                     });
+                }).catch((error) => {
+                    console.log("Error getting documents: ", error);
                 });
             </script>
         </div>
