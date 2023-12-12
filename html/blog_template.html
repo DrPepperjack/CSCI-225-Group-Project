@@ -27,6 +27,15 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                var userName = user.displayName;
+            } else {
+                // No user is signed in.
+                console.log('No user is signed in');
+            }
+        });
     </script>
 
     <!-- Top Navigation Bar -->
