@@ -34,7 +34,7 @@
         <a class="nav-title" href="#">Banksia<b>Pages</b></a>
         <div class="header-buttons">
             <!-- When user is signed-in add sign out function-->
-            <a href="#">Sign In</a>
+            <a href="#">Log Out</a>
             <!-- Sign out will replace sign in when user is logged in commented out currently
             <a href="#">Sign Out</a> -->
         </div>
@@ -126,7 +126,7 @@
                     });
         
                     // Fetch blogs created by the user from Firestore
-                    db.collection('blogPosts').where('blogUserName', '==', userName).get().then((querySnapshot) => {
+                    db.collection('blogPosts').where(firebase.firestore.FieldPath.documentId(), '==', `${userName}-blogTitle`).get().then((querySnapshot) => {
                         querySnapshot.forEach((doc) => {
                             // Get blog data from the document
                             var blogData = doc.data();
