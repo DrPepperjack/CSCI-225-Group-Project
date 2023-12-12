@@ -51,81 +51,71 @@
         <h2>Empower Your Voice</h2>
         <div class="feature">
             <div class="img-container">
-                <img src="../img/blogs_lists_img/Stock-Photo-1.jpeg" alt="Feature Icon">
-                <p>Connect with your audience through blogs!</p>
-            </div>
-        </div>
-        <div class="feature">
-            <div class="img-container">
-                <img src="../img/blogs_lists_img/Stock-Photo-2.jpg" alt="Feature Icon">
+                <img src="../img/blogs_lists_img/Stock-Photo-2.png" alt="Feature Icon">
                 <p>Voice your own thoughts and grow in the community! </p>
             </div>
         </div>
         <div class="feature">
             <div class="img-container">
-                <img src="../img/blogs_lists_img/Stock-Photo-3.jpg" alt="Feature Icon">
+                <img src="../img/blogs_lists_img/Stock-Photo-3.png" alt="Feature Icon">
             </div>
             <p>Comment and engage with fellow members!</p>
         </div>
-    </main>
 
-    <!-- Featured Blogs -->
-    <main class="featured-blogs">
-        <h1>Featured Blogs</h1>
-        <!-- Script to get blog posts from the database -->
-        <div class="featured-blogs-list">
-            <script>
-                // Get a reference to the Firestore database
-                var db = firebase.firestore();
+        <!-- Featured Blogs -->
+        <div class="featured-blogs">
+            <h1>Featured Blogs</h1>
+            <!-- Script to get blog posts from the database -->
+            <div class="featured-blogs-list">
+                <script>
+                    // Get a reference to the Firestore database
+                    var db = firebase.firestore();
 
-                // Get a reference to the container element
-                var container = document.querySelector('.featured-blogs');
+                    // Get a reference to the container element
+                    var container = document.querySelector('.featured-blogs');
 
-                // Get all documents from the "blogPosts" collection
-                db.collection("blogPosts").get().then((querySnapshot) => {
-                    querySnapshot.forEach((doc) => {
-                        // Create a new div element for the blog post
-                        var postDiv = document.createElement('div');
-                        postDiv.className = 'blog-post';
+                    // Get all documents from the "blogPosts" collection
+                    db.collection("blogPosts").get().then((querySnapshot) => {
+                        querySnapshot.forEach((doc) => {
+                            // Create a new div element for the blog post
+                            var postDiv = document.createElement('div');
+                            postDiv.className = 'blog-post';
 
-                        // Create HTML elements for the blog title, date, content, and username
-                        var title = document.createElement('h3');
-                        title.textContent = doc.data().title;
+                            // Create HTML elements for the blog title, date, content, and username
+                            var title = document.createElement('h3');
+                            title.textContent = doc.data().title;
 
-                        var date = document.createElement('p');
-                        date.textContent = "Date Created: " + doc.data().date;
+                            var date = document.createElement('p');
+                            date.textContent = "Date Created: " + doc.data().date;
 
-                        var content = document.createElement('p');
-                        content.textContent = doc.data().content;
+                            var content = document.createElement('p');
+                            content.textContent = doc.data().content;
 
-                        var userDiv = document.createElement('div');
-                        userDiv.style.display = 'flex';
-                        userDiv.style.alignItems = 'center';
+                            var userDiv = document.createElement('div');
+                            userDiv.style.display = 'flex';
+                            userDiv.style.alignItems = 'center';
 
-                        var username = document.createElement('p');
-                        username.textContent = "Created By: " + " " + doc.data().blogUsername;
+                            var username = document.createElement('p');
+                            username.textContent = "Created By: " + " " + doc.data().blogUsername;
 
-                        console.log('Fetching user data for username:', doc.data().blogUsername);
+                            console.log('Fetching user data for username:', doc.data().blogUsername);
 
-                        // Append the username to the userDiv
-                        userDiv.appendChild(username);
+                            // Append the username to the userDiv
+                            userDiv.appendChild(username);
 
-                        // Append the title, date, content, and userDiv to the postDiv
-                        postDiv.appendChild(title);
-                        postDiv.appendChild(date);
-                        postDiv.appendChild(content);
-                        postDiv.appendChild(userDiv);
+                            // Append the title, date, content, and userDiv to the postDiv
+                            postDiv.appendChild(title);
+                            postDiv.appendChild(date);
+                            postDiv.appendChild(content);
+                            postDiv.appendChild(userDiv);
 
                         // Append the postDiv to the container
                         container.appendChild(postDiv);
                     });
-                }).catch((error) => {
-                    console.log("Error getting documents: ", error);
                 });
             </script>
         </div>
     </main>
-
     <!-- Footer -->
     <footer>
         <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
