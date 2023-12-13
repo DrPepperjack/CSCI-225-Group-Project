@@ -155,6 +155,14 @@ main .featured-blogs {
     border-top: 2px #ff6600 solid;
 }
 
+.featured-blogs h2{
+    font-size: 2em;
+    font-family: 'DM Sans', 'sans-serif';
+    font-weight: 200;
+    border-radius: 8px;
+    border-color: #ff6600, 2px;
+    filter:blur(10px)
+}
 .blog-info {
     flex-direction: column;
     display: flex;

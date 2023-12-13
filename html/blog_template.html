@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../css/themes.css/theme-1.css">
+    <link rel="stylesheet" href="../css/blog_template.css/blog-temp.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Banksia Pages</title>
 </head>
@@ -27,6 +27,15 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                var userName = user.displayName;
+            } else {
+                // No user is signed in.
+                console.log('No user is signed in');
+            }
+        });
     </script>
 
     <!-- Top Navigation Bar -->
@@ -97,63 +106,55 @@
                                 document.querySelector('.profile-pic-container img').src = userData.profilePicture;
                                 document.querySelector('.blog_username').textContent = userData.blogUserName;
                                 document.querySelector('.blog_bio').textContent = userData.blogBio;
+            
+                                // Fetch blogs created by the user from Firestore
+                                db.collection('blogPosts').where('blogUsername', '==', userData.blogUserName).get().then((querySnapshot) => {
+                                    console.log('Fetched blog posts:', querySnapshot.docs); // Log the fetched blog posts
+            
+                                    querySnapshot.forEach((doc) => {
+                                        // Get blog data from the document
+                                        var blogData = doc.data();
+            
+                                        console.log('Processing blog post:', blogData); // Log the blog data that's being processed
+            
+                                        // Check if the blogUsername in the blog post matches the user's blogUserName
+                                        if (blogData.blogUsername === userData.blogUserName) {
+                                            // Create a new div element for the blog post
+                                            var postDiv = document.createElement('div');
+                                            postDiv.className = 'blog-post';
+            
+                                            // Create HTML elements for the blog title, date, content, and username
+                                            var title = document.createElement('h3');
+                                            title.textContent = blogData.title;
+            
+                                            var date = document.createElement('p');
+                                            date.textContent = "Date Created: " + blogData.date;
+            
+                                            var content = document.createElement('p');
+                                            content.textContent = blogData.content;
+            
+                                            var userDiv = document.createElement('div');
+                                            userDiv.style.display = 'flex';
+                                            userDiv.style.alignItems = 'center';
+            
+                                            // Append the blog title, date, content, and username to the blog post div
+                                            postDiv.appendChild(title);
+                                            postDiv.appendChild(date);
+                                            postDiv.appendChild(content);
+                                            postDiv.appendChild(userDiv);
+            
+                                            // Append the blog post div to the blog list
+                                            document.querySelector('.blog-list').appendChild(postDiv);
+                                        }
+                                    });
+                                }).catch((error) => {
+                                    console.log('Error getting documents:', error);
+                                });
                             } else {
                                 console.log('No such document!');
                             }
                         }).catch((error) => {
                             console.log('Error getting document:', error);
-                        });
-            
-                        // Fetch blogs created by the user from Firestore
-                        db.collection('blogPosts').where('blogUserName', '==', userData.blogUserName).get().then((querySnapshot) => {
-                            querySnapshot.forEach((doc) => {
-                                // Get blog data from the document
-                                var blogData = doc.data();
-            
-                                // Check if the blogUserName in the blog post matches the user's display name
-                                if (blogData.blogUserName === userData.blogUserName) {
-                                    // Create a new div element for the blog post
-                                    var postDiv = document.createElement('div');
-                                    postDiv.className = 'blog-post';
-            
-                                    // Create HTML elements for the blog title, date, content, and username
-                                    var title = document.createElement('h3');
-                                    title.textContent = blogData.title;
-            
-                                    var date = document.createElement('p');
-                                    date.textContent = "Date Created: " + blogData.date;
-            
-                                    var content = document.createElement('p');
-                                    content.textContent = blogData.content;
-            
-                                    var userDiv = document.createElement('div');
-                                    userDiv.style.display = 'flex';
-                                    userDiv.style.alignItems = 'center';
-            
-                                    var username = document.createElement('p');
-                                    username.textContent = "Created By: " + " " + blogData.blogUserName;
-            
-                                    console.log('Fetching user data for username:', blogData.blogUserName);
-            
-                                    // Append the username to the userDiv
-                                    userDiv.appendChild(username);
-            
-                                    // Append the title, date, content, and userDiv to the postDiv
-                                    postDiv.appendChild(title);
-                                    postDiv.appendChild(date);
-                                    postDiv.appendChild(content);
-                                    postDiv.appendChild(userDiv);
-            
-                                    // Append the postDiv to the blog post body
-                                    var blogPostBody = document.querySelector('.blog-post-body');
-                                    blogPostBody.appendChild(postDiv);
-                                }
-                                else {
-                                    console.log('No blog posts found for user:', userData.blogUserName);
-                                }
-                            });
-                        }).catch((error) => {
-                            console.log('Error getting documents:', error);
                         });
                     } else {
                         // No user is signed in.
