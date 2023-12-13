@@ -7,109 +7,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Banksia Creators</title>
 </head>
+<div class="createpost_container">
 
-<body>
-    <!-- Top Navigation Bar -->
-    <nav class="top-nav" id="navbar">
-        <a class="nav-title" href="#">Banksia<b>Pages</b></a>
-        <div class="header-buttons">
-            <a href="blog_template.html">Profile</a>
+    <body>
+        <!-- Top Navigation Bar -->
+        <nav class="top-nav" id="navbar">
+            <a class="nav-title" href="#">Banksia<b>Pages</b></a>
+            <div class="header-buttons">
+                <a href="blog_template.html">Profile</a>
+            </div>
+
+            <div class="header-links">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="blogslist.html">Blogs</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="createpost_form">
+            <form action="" name="create-post" onsubmit="submitForm()">
+                Post title:
+                <p>
+                    <input type="text" name="post-title" id="post-title">
+                </p>
+                Post text:
+                <p>
+                    <textarea name="post-content" id="post-content" cols="100" rows="10"></textarea>
+                </p>
+                <p>
+                    <input type="submit" name="submit-post" id="submit-post">
+                </p>
+            </form>
         </div>
+        <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
+        <footer>
+            <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
+        </footer>
+        <script>
+            // Initialize Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyD6KA0ECIAB3scXNUu7mxgjmbmnhjOSEVc",
+                authDomain: "banksia-pages-database.firebaseapp.com",
+                projectId: "banksia-pages-database",
+                storageBucket: "banksia-pages-database.appspot.com",
+                messagingSenderId: "239610874789",
+                appId: "1:239610874789:web:80bcede53d7ef4ba26764c",
+                measurementId: "G-JV3QXR7P2H"
+            };
+            firebase.initializeApp(firebaseConfig);
 
-        <div class="header-links">
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="blogslist.html">Blogs</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-        </div>
-    </nav>
-    <form action="" name="create-post" onsubmit="submitForm()">
-        Post title:
-        <p>
-            <input type="text" name="post-title" id="post-title">
-        </p>
-        Post text:
-        <p>
-            <textarea name="post-content" id="post-content" cols="100" rows="20"></textarea>
-        </p>
-        <p>
-            <input type="submit" name="submit-post" id="submit-post">
-        </p>
-    </form>
-    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
-    <footer>
-        <p>&copy; 2023 Banksia Pages. All rights reserved.</p>
-    </footer>
-    <script>
-        // Initialize Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyD6KA0ECIAB3scXNUu7mxgjmbmnhjOSEVc",
-            authDomain: "banksia-pages-database.firebaseapp.com",
-            projectId: "banksia-pages-database",
-            storageBucket: "banksia-pages-database.appspot.com",
-            messagingSenderId: "239610874789",
-            appId: "1:239610874789:web:80bcede53d7ef4ba26764c",
-            measurementId: "G-JV3QXR7P2H"
-        };
-        firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
 
-        const db = firebase.firestore();
+            function submitForm(event) {
+                event.preventDefault(); // Prevent the form from refreshing the page
 
-        function submitForm(event) {
-        event.preventDefault(); // Prevent the form from refreshing the page
+                // Get the input values
+                const postTitle = document.getElementById('post-title').value;
+                const postContent = document.getElementById('post-content').value;
 
-        // Get the input values
-        const postTitle = document.getElementById('post-title').value;
-        const postContent = document.getElementById('post-content').value;
-
-        // Get the current user's username
-        const user = firebase.auth().currentUser;
-        if (!user) {
-            alert('You must be signed in to create a post.');
-            return;
-        }
-        const googleName = user.displayName; // Google name
-
-        // Fetch the blog username from the Firestore database
-        db.collection('UserData').doc(googleName).get()
-            .then((doc) => {
-                if (doc.exists) {
-                    const blogUsername = doc.data().blogUserName; // Blog username
-
-                    // Get the current date
-                    const date = new Date();
-                    const month = date.getMonth() + 1; // Months are 0-indexed
-                    const year = date.getFullYear();
-
-                    // Create a new document in the "blogPosts" collection
-                    db.collection('blogPosts').doc(`${blogUsername}-${postTitle}`).set({
-                        googleName: googleName,
-                        blogUsername: blogUsername,
-                        title: postTitle,
-                        content: postContent,
-                        date: `${month}-${year}`
-                    })
-                        .then(() => {
-                            alert('Post created successfully!');
-                        })
-                        .catch((error) => {
-                            console.error('Error writing document: ', error);
-                        });
-                } else {
-                    console.log('No such document!');
+                // Get the current user's username
+                const user = firebase.auth().currentUser;
+                if (!user) {
+                    alert('You must be signed in to create a post.');
+                    return;
                 }
-            })
-            .catch((error) => {
-                console.log('Error getting document:', error);
-            });
-    }
+                const googleName = user.displayName; // Google name
 
-    // Attach the submitForm function to the form's submit event
-    document.forms['create-post'].addEventListener('submit', submitForm);
-    </script>
-</body>
+                // Fetch the blog username from the Firestore database
+                db.collection('UserData').doc(googleName).get()
+                    .then((doc) => {
+                        if (doc.exists) {
+                            const blogUsername = doc.data().blogUserName; // Blog username
+
+                            // Get the current date
+                            const date = new Date();
+                            const month = date.getMonth() + 1; // Months are 0-indexed
+                            const year = date.getFullYear();
+
+                            // Create a new document in the "blogPosts" collection
+                            db.collection('blogPosts').doc(`${blogUsername}-${postTitle}`).set({
+                                googleName: googleName,
+                                blogUsername: blogUsername,
+                                title: postTitle,
+                                content: postContent,
+                                date: `${month}-${year}`
+                            })
+                                .then(() => {
+                                    alert('Post created successfully!');
+                                    window.location.href=('blog_template.html');
+                                })
+                                .catch((error) => {
+                                    console.error('Error writing document: ', error);
+                                });
+                        } else {
+                            console.log('No such document!');
+                        }
+                    })
+                    .catch((error) => {
+                        console.log('Error getting document:', error);
+                    });
+            }
+
+            // Attach the submitForm function to the form's submit event
+            document.forms['create-post'].addEventListener('submit', submitForm);
+        </script>
+    </body>
+</div>
 
 </html>

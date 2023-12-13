@@ -267,7 +267,49 @@ main {
 .createaccount_form #bio:hover, .createaccount_form #username:hover{
     border: 1px solid black;
 }
-
+/*Create post page style*/
+.createpost_container{
+    position: relative;
+    background: linear-gradient(rgba(255, 163, 59, 0.4), rgba(0, 0, 0, 0.4)),
+    /*shadow over background image*/
+    url('../img/britishlibrary_plant.jpg');
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: 150% 150%;
+}
+.createpost_form{
+    background: rgb(255, 255, 255);
+    margin: 1em 1em;
+    border: 1px solid #ff6600;
+    padding: 0 15%;
+    height: 30em;
+    border-radius: 10px;
+    text-align: left;
+}
+.createpost_form #submit-post{
+    font-family: "Montagu Slab", "Sans-serif";
+    color: white;
+    background-color: #ff6600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 25%;
+    height: 3em;
+    transition: 0.5s;
+}
+.createpost_form #submit-post:hover{
+    background-color: #ff8534;
+}
+.createpost_form #post-title, .createpost_form #post-content{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+.createpost_form #post-title:hover, .createpost_form #post-content:hover{
+    border: 1px solid black;
+}
 /* Top Navigation Bar styles */
 .top-nav {
     background-color: #fff;
@@ -357,4 +399,3 @@ main {
     width: 20px;
     padding-right: 0.5em;
 }
-
