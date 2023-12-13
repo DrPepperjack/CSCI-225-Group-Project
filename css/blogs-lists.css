@@ -136,6 +136,7 @@ b {
     text-align: center;
 }
 
+
 main{
     text-align: center;
     display: flex;
@@ -150,10 +151,19 @@ main .featured-blogs {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    /* Adjust as needed */
     border-top: 2px #ff6600 solid;
+    backdrop-filter: blur(10px);
+    overflow-y: auto; /* Change to 'auto' to enable scrolling */
+    height: 150vh;
 }
+
+/* Hide the scrollbar for webkit browsers */
+main .featured-blogs::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar width */
+    height: 0; /* Remove scrollbar height */
+    display: none; /* Hide scrollbar */
+}
+
 
 .featured-blogs h2{
     font-size: 2em;
@@ -161,7 +171,6 @@ main .featured-blogs {
     font-weight: 200;
     border-radius: 8px;
     border-color: #ff6600, 2px;
-    filter:blur(10px)
 }
 .blog-info {
     flex-direction: column;
