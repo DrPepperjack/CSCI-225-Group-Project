@@ -28,19 +28,11 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                var userName = user.displayName;
-            } else {
-                // No user is signed in.
-                console.log('No user is signed in');
-            }
-        });
     </script>
 
     <!-- Top Navigation Bar -->
     <nav class="top-nav" id="navbar">
-        <a class="nav-title" href="#">Banksia<b>Pages</b></a>
+        <a class="nav-title" href="../index.html">Banksia<b>Pages</b></a>
         <div class="header-buttons">
             <!-- When user is signed-in add sign out function-->
             <a href="#" id="logoutButton">Log Out</a>
@@ -81,10 +73,9 @@
                 <h1 class="blog_username">
                 </h1>
 
-                <div class="blog_bio">
-                    <div class="create-post">
-                        <h2><a href="createpost.html">Create Post</a></h2>
-                    </div>
+                <div class="blog_bio"></div>
+
+                    <h2><a href="createpost.html">Create Post</a></h2>
         </menu>
 
 

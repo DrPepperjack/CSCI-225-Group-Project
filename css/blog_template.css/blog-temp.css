@@ -145,9 +145,24 @@ main {
     display: flex;
     flex-direction: column;
     width: 90%;
+    height: fit-content;
     border: 1px solid #C9D6EA;
     border-radius: 5px;
     margin-right: 10px;
+}
+
+.blog_bio {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #C9D6EA;
+}
+
+.profile-info-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }
 
 /* Blog List Section styles */
@@ -161,6 +176,7 @@ main {
     border: 1px solid #C9D6EA;
     border-radius: 5px;
     margin-top: 15px;
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
 /* Adjusting the width of each individual blog post */
